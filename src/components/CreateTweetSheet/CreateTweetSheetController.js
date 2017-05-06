@@ -1,4 +1,5 @@
 
+import axios from 'axios';
 import React from 'react';
 import View from './CreateTweetSheetView';
 
@@ -6,6 +7,8 @@ export default class CreateTweetSheetController extends React.Component {
 
   constructor(props) {
     super(props);
+    props.url = props.url ||
+      'https://z2ajuybdq3.execute-api.us-west-2.amazonaws.com/dev/sheets';
     this.handleCreate = this.handleCreate.bind(this);
   }
 
@@ -15,6 +18,12 @@ export default class CreateTweetSheetController extends React.Component {
 
   handleCreate(options) {
     console.log('options:', options);
+    console.log('url:', this.props.url);
+    return axios({
+      method: 'POST',
+      url: this.props.url,
+      data: options
+    });
   }
 
 }
