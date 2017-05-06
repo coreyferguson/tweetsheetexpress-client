@@ -18,37 +18,46 @@ export default class CreateTweetSheetView extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className='columns'>
 
         <form onSubmit={this.handleSubmit}>
 
-          <h1>tweetsheetexpress</h1>
-
           {/* Twitter Handles */ }
-          <label>Twitter handles</label>
-          <br/>
-          <textarea
-              rows="10"
-              cols="50"
-              onChange={this.handleHandlesChange}>
-            {this.state.handles}
-          </textarea>
-          <br /><br />
+          <div className='field'>
+            <label className='label'>Twitter handles</label>
+            <p className='control'>
+              <textarea
+                  placeholder='Twitter handles'
+                  className='textarea'
+                  rows='10'
+                  cols='50'
+                  onChange={this.handleHandlesChange}>
+                {this.state.handles}
+              </textarea>
+            </p>
+          </div>
 
           {/* Message */}
-          <label>Message: </label>
-          <br />
-          <textarea
-              rows="10"
-              cols="50"
-              onChange={this.handleMessageChange}>
-            {this.state.message}
-          </textarea>
-          <br />
-          <p>{this.charsRemaining()} characters remaining</p>
-          <br /><br />
+          <div className='field'>
+            <label className='label'>Message: </label>
+            <p className='control'>
+              <textarea
+                  placeholder='Hello @handle, how are you?'
+                  className='textarea'
+                  rows='10'
+                  cols='50'
+                  onChange={this.handleMessageChange}>
+                {this.state.message}
+              </textarea>
+            </p>
+            <p>{this.charsRemaining()} characters remaining</p>
+          </div>
 
-          <input type='submit' />
+          <div className='field'>
+            <p className='control'>
+              <input type='submit' className='button is-primary' />
+            </p>
+          </div>
 
         </form>
 
