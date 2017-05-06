@@ -8,7 +8,7 @@ export default class CreateTweetSheetController extends React.Component {
   constructor(props) {
     super(props);
     props.url = props.url ||
-      'https://z2ajuybdq3.execute-api.us-west-2.amazonaws.com/dev/sheets';
+      'https://fdlg8hz2g8.execute-api.us-west-2.amazonaws.com/dev/sheets';
     this.handleCreate = this.handleCreate.bind(this);
   }
 
