@@ -8,6 +8,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist')
   },
 
+
   externals: {
    'react': 'React',
    'react-dom': 'ReactDOM',
@@ -28,6 +29,12 @@ module.exports = {
         }
       }
     ]
-  }
+  },
 
+  devtool: 'cheap-module-eval-source-map',
+  devServer: {
+    contentBase: path.resolve(__dirname, 'dist'),
+    compress: true,
+    port: 3000
+  }
 };

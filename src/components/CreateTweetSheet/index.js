@@ -1,3 +1,3 @@
 
-import CreateTweetSheetView from './CreateTweetSheetView';
-export default CreateTweetSheetView;
+import CreateTweetSheetController from './CreateTweetSheetController';
+export default CreateTweetSheetController;
