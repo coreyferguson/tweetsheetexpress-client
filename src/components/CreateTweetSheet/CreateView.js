@@ -93,7 +93,7 @@ export default class CreateView extends React.Component {
 }
 
 CreateView.propTypes = {
-  onCreate: React.PropTypes.func.isRequired,
+  onCreate: React.PropTypes.func.isRequired
 };
 
 CreateView.defaultProps = {

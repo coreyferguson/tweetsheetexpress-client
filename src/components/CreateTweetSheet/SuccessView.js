@@ -12,8 +12,7 @@ export default class SuccessView extends React.Component {
     return (
       <section className="section">
         <div className="container is-fluid">
-          <h1 className="title">Success!</h1>
-          <br />
+          <h1 className="title is-spaced">Success!</h1>
           <h2 className="subtitle">
             Share your tweetsheet with others: &nbsp;
             <a href={url}>{url}</a>
@@ -30,5 +29,5 @@ SuccessView.propTypes = {
 };
 
 SuccessView.defaultProps = {
-  baseUrl: 'http://tweetsheets.s3-website-us-west-2.amazonaws.com/#/'
+  baseUrl: 'http://tweetsheets.s3-website-us-west-2.amazonaws.com/#/sheets/'
 };
