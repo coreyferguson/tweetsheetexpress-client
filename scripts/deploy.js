@@ -11,7 +11,7 @@ AWS.config.update({
 });
 const s3 = new AWS.S3({apiVersion: '2006-03-01'});
 const client = S3Client.createClient({ s3Client: s3 });
-const bucketName = 'tweetsheets';
+const bucketName = 'tweetsheets.overattribution.com';
 
 // high level execution
 createBucket().then(() => {

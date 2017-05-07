@@ -29,5 +29,5 @@ SuccessView.propTypes = {
 };
 
 SuccessView.defaultProps = {
-  baseUrl: 'http://tweetsheets.s3-website-us-west-2.amazonaws.com/#/sheets/'
+  baseUrl: 'http://tweetsheets.overattribution.com/#/sheets/'
 };
