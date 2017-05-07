@@ -13,7 +13,6 @@ export default class ViewTweetSheet extends React.Component {
   render() {
     const tweets = this.props.handles.map(handle => {
       const plainTextHandle = handle.replace('@', '');
-      // const linkToHandle = <a href={'https://twitter.com/' + plainTextHandle} />;
       const tweet = this.props.tweet
         .replace(new RegExp('@handle', 'g'), handle);
       return (
