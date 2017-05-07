@@ -33,7 +33,7 @@ export default class CreateView extends React.Component {
 
         {/* Tweet */}
         <div className='field'>
-          <label className='label'>Tweet: </label>
+          <label className='label'>Tweet</label>
           <p className='control'>
             <textarea
                 placeholder='Hello @handle, how are you?'
