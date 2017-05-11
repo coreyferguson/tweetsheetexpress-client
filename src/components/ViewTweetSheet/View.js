@@ -26,7 +26,7 @@ export default class ViewTweetSheet extends React.Component {
             <a
                 title='Tweet this'
                 target='_blank'
-                href={`https://twitter.com/intent/tweet?text=${tweet}`}
+                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(tweet)}`}
                 className='button is-primary has-text-right'>
               Tweet
             </a>
