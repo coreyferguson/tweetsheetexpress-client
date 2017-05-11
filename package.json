@@ -23,5 +23,8 @@
     "react-router": "^2.0.0",
     "webpack": "2.5.0",
     "webpack-dev-server": "^2.4.5"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.49.0"
   }
 }
