@@ -8,7 +8,7 @@
     "build": "npm run clean && ./node_modules/.bin/webpack && cp src/*html dist/",
     "deploy": "npm run build && node scripts/deploy",
     "test": "node_modules/.bin/karma start test/karma.conf.js",
-    "testManual": "node_modules/.bin/webpack-dev-server"
+    "testManual": "node_modules/.bin/webpack-dev-server --https"
   },
   "author": "Corey Ferguson <corey.t.ferguson@gmail.com>",
   "license": "MIT",

@@ -36,5 +36,5 @@ export default class Controller extends React.Component {
 }
 
 Controller.defaultProps = {
-  url: 'https://fdlg8hz2g8.execute-api.us-west-2.amazonaws.com/dev/sheets'
+  url: 'https://tweetsheets-api.overattribution.com/sheets'
 };
