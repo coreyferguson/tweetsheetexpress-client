@@ -4,6 +4,7 @@ const path = require('path');
 const AWS = require('aws-sdk');
 const S3Client = require('s3');
 
+const env = process.env.NODE_ENV || 'dev';
 
 // configuration
 AWS.config.update({
@@ -11,7 +12,8 @@ AWS.config.update({
 });
 const s3 = new AWS.S3({apiVersion: '2006-03-01'});
 const client = S3Client.createClient({ s3Client: s3 });
-const bucketName = 'tweetsheets.overattribution.com';
+const subDomainSuffix = (env === 'prod') ? '' : `-${env}`;
+const bucketName = `tweetsheets${subDomainSuffix}.overattribution.com`;
 
 // high level execution
 createBucket().then(() => {
