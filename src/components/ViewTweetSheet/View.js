@@ -19,14 +19,14 @@ export default class ViewTweetSheet extends React.Component {
           <div className='content'>
 
             {/* Tweet message */}
-            <p className='subtitle'>{tweet}</p>
+            <p className='subtitle tweet-message'>{tweet}</p>
 
             {/* Tweet button */}
             <a
                 title='Tweet this'
                 target='_blank'
                 href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(tweet)}`}
-                className='button is-primary has-text-right'>
+                className='tweet-link button is-primary has-text-right'>
               Tweet
             </a>
 
