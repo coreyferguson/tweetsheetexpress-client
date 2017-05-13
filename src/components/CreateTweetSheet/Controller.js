@@ -8,11 +8,11 @@ export default class Controller extends React.Component {
 
   constructor(props) {
     super(props);
-    console.log('CreateTweetSheet/Controller');
     this.state = {
       tweetSheetId: null
     };
     this.handleCreate = this.handleCreate.bind(this);
+    this._axios = axios;
   }
 
   render() {
@@ -21,7 +21,7 @@ export default class Controller extends React.Component {
   }
 
   handleCreate(options) {
-    return axios({
+    return this._axios({
       method: 'POST',
       url: this.props.url,
       data: options

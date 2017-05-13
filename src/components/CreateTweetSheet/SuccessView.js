@@ -25,7 +25,7 @@ export default class SuccessView extends React.Component {
 }
 
 SuccessView.propTypes = {
-  tweetSheetId: React.PropTypes.number.isRequired
+  tweetSheetId: React.PropTypes.string.isRequired
 };
 
 SuccessView.defaultProps = {

@@ -1,7 +1,7 @@
 
 import React from 'react';
 import RootView from '../../../../src/components/Root/RootView';
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import { expect } from '../../../support/TestUtils';
 
 describe('RootView Unit Test', () => {
