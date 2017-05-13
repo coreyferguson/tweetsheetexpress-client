@@ -9,6 +9,7 @@ To bring up a dev environment:
     + Price Class: `Use Only US, Canada and Europe`
     + `Custom SSL Certificate`
     + Default Root Object: `index.html`
+    + Alternate Domain Names (CNAMEs): `tweetsheets-dev.overattribution.com`
 - Create Hosted Zone record set
     + A - IPv4
         * Name: `tweetsheets-dev`
@@ -16,3 +17,8 @@ To bring up a dev environment:
     + AAAA - IPv6
         * Name: `tweetsheets-dev`
         * Alias target: `d3hjz69o8boa6t.cloudfront.net.` (from distribution above)
+- Create custom domain in Amazon API Gateway
+- Created Hosted Zone record set
+    + A - IPv4
+        * Name: `tweetsheets-dev-api`
+        * Alias target: `d2jjsnjkd4n6ay.cloudfront.net.` (from api gateway custom domain distribution)
