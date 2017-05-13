@@ -19,6 +19,9 @@ describe('ViewTweetSheet/View Unit Test', () => {
     expect(wrapper.find('.tweet-message').at(0).text()).to.equal('Hello @Corey!');
     expect(wrapper.find('.tweet-message').at(1).text()).to.equal('Hello @Zoe!');
     expect(wrapper.find('.tweet-message').at(2).text()).to.equal('Hello @Julian!');
+    expect(wrapper.find('.tweet-index').at(0).text()).to.equal('1');
+    expect(wrapper.find('.tweet-index').at(1).text()).to.equal('2');
+    expect(wrapper.find('.tweet-index').at(2).text()).to.equal('3');
   });
 
   it('uri encode tweet', () => {
