@@ -1,5 +1,6 @@
 
 import axios from 'axios';
+import config from 'config';
 import React from 'react';
 import View from './View';
 
@@ -36,5 +37,5 @@ export default class Controller extends React.Component {
 }
 
 Controller.defaultProps = {
-  url: 'https://tweetsheets-api.overattribution.com/sheets'
+  url: `${config.api}/sheets`
 };

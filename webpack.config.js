@@ -1,4 +1,8 @@
-var path = require('path');
+
+const path = require('path');
+
+const environment = process.env.NODE_ENV || 'dev';
+const envConfig = path.resolve(__dirname, `../config/${environment}.json`);
 
 module.exports = {
 
@@ -6,6 +10,12 @@ module.exports = {
   output: {
     filename: 'index.js',
     path: path.resolve(__dirname, 'dist')
+  },
+
+  resolve: {
+    alias: {
+      config: envConfig,
+    },
   },
 
 

@@ -1,5 +1,8 @@
-// Karma configuration
-// Generated on Sat May 13 2017 07:03:00 GMT-0700 (PDT)
+
+const path = require('path');
+
+const environment = process.env.NODE_ENV || 'dev';
+const envConfig = path.resolve(__dirname, `../config/${environment}.json`);
 
 module.exports = function(config) {
   config.set({
@@ -71,6 +74,11 @@ module.exports = function(config) {
             }
           }
         ]
+      },
+      resolve: {
+        alias: {
+          config: envConfig,
+        },
       },
       externals: {
         'react/addons': true,                      // pre-existing at enzyme 2.8.0
