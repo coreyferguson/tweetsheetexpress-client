@@ -8,6 +8,7 @@ export default class Controller extends React.Component {
 
   constructor(props) {
     super(props);
+    console.log('CreateTweetSheet/Controller');
     this.state = {
       tweetSheetId: null
     };
