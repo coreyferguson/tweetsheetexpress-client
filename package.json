@@ -7,8 +7,9 @@
     "clean": "rm -fr dist/",
     "build": "npm run clean && ./node_modules/.bin/webpack && cp src/*html dist/",
     "deploy": "npm run build && node scripts/deploy",
-    "test": "node_modules/.bin/karma start test/karma.conf.js",
-    "testManual": "npm run build && node_modules/.bin/webpack-dev-server --https"
+    "test": "node_modules/.bin/karma start test/karma.conf.js --single-run",
+    "testManual": "npm run build && node_modules/.bin/webpack-dev-server --https",
+    "testWatch": "node_modules/.bin/karma start test/karma.conf.js --no-single-run"
   },
   "author": "Corey Ferguson <corey.t.ferguson@gmail.com>",
   "license": "MIT",
@@ -23,6 +24,7 @@
     "enzyme": "^2.8.2",
     "express": "^4.15.2",
     "karma": "^1.7.0",
+    "karma-chrome-launcher": "^2.1.1",
     "karma-mocha": "^1.3.0",
     "karma-webpack": "^2.0.3",
     "mocha": "^3.3.0",
