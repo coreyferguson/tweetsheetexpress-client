@@ -1,4 +1,4 @@
 {
   "api": "https://tweetsheets-api-dev.overattribution.com",
-  "client": "https://tweetsheets-dev.overattribution.com"
+  "client": "https://localhost:3000"
 }

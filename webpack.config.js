@@ -2,7 +2,8 @@
 const path = require('path');
 
 const environment = process.env.NODE_ENV || 'dev';
-const envConfig = path.resolve(__dirname, `../config/${environment}.json`);
+const envConfig = path.resolve(__dirname, `./config/${environment}.json`);
+console.log('envConfig:', envConfig);
 
 module.exports = {
 

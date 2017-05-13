@@ -1,3 +1,4 @@
 {
-  "api": "https://tweetsheets-api.overattribution.com"
+  "api": "https://tweetsheets-api.overattribution.com",
+  "client": "https://tweetsheets.overattribution.com"
 }

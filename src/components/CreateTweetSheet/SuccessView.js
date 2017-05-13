@@ -1,5 +1,6 @@
 
 import React from 'react';
+import config from 'config';
 
 export default class SuccessView extends React.Component {
 
@@ -29,5 +30,5 @@ SuccessView.propTypes = {
 };
 
 SuccessView.defaultProps = {
-  baseUrl: 'http://tweetsheets.overattribution.com/#/sheets/'
+  baseUrl: `${config.client}/#/sheets/`
 };
