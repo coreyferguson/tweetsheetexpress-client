@@ -18,6 +18,8 @@ export default class Controller extends React.Component {
     if (this.state.loading) return <h1>Loading...</h1>;
     else return <View
       sheetId={this.props.params.id}
+      title={this.sheet.title}
+      description={this.sheet.description}
       tweet={this.sheet.tweet}
       handles={this.sheet.handles} />;
   }

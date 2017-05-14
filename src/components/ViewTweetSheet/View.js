@@ -1,5 +1,6 @@
 
 import config from 'config';
+import { HeroWrapper } from '../Hero';
 import React from 'react';
 import './View.scss';
 
@@ -55,18 +56,28 @@ export default class ViewTweetSheet extends React.Component {
       );
     });
     return (
-      <div className='tweet-sheet'>
-        <div className='download-csv is-clearfix'>
-          <a
-              className='is-pulled-right'
-              href={`${this.props.url}?id=${this.props.sheetId}`}>
-            Download Sheet
-          </a>
+      <HeroWrapper title={this.props.title}>
+        <div className='tweet-sheet'>
+
+          {/* Description */}
+          <p className='subtitle'>
+            Description: {this.props.description}
+          </p>
+
+          {/* Download CSV */}
+          <div className='download-csv is-clearfix'>
+            <a
+                className='is-pulled-right'
+                href={`${this.props.url}?id=${this.props.sheetId}`}>
+              Download Sheet
+            </a>
+          </div>
+
+          {/* Tweets */}
+          {tweets}
+
         </div>
-
-        {tweets}
-
-      </div>
+      </HeroWrapper>
     );
   }
 
@@ -76,9 +87,12 @@ ViewTweetSheet.propTypes = {
   sheetId: React.PropTypes.string.isRequired,
   tweet: React.PropTypes.string.isRequired,
   handles: React.PropTypes.array.isRequired,
+  title: React.PropTypes.string,
+  description: React.PropTypes.string,
   url: React.PropTypes.string
 };
 
 ViewTweetSheet.defaultProps = {
-  url: `${config.api}/sheets/csv`
+  url: `${config.api}/sheets/csv`,
+  title: 'tweetsheets'
 };
