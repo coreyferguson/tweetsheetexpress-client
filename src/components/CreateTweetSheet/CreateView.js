@@ -1,14 +1,19 @@
 
 import React from 'react';
+import { HeroWrapper } from '../Hero';
 
 export default class CreateView extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      handles: props.handles || '',
-      tweet: props.tweet || ''
+      title: props.title,
+      description: props.description,
+      handles: props.handles,
+      tweet: props.tweet
     }
+    this.handleTitleChange = this.handleTitleChange.bind(this);
+    this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
     this.handleHandlesChange = this.handleHandlesChange.bind(this);
     this.handleTweetChange = this.handleTweetChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -16,43 +21,77 @@ export default class CreateView extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <HeroWrapper title={this.state.title}>
+        <form onSubmit={this.handleSubmit}>
 
-        {/* Twitter Handles */ }
-        <div className='field'>
-          <label className='label'>Twitter handles</label>
-          <p className='control'>
-            <textarea
-                placeholder='Twitter handles'
-                className='textarea'
-                onChange={this.handleHandlesChange}>
-              {this.state.handles}
-            </textarea>
-          </p>
-        </div>
+          {/* Title */}
+          <div className='field'>
+            <label className='label'>Title</label>
+            <p className='control'>
+              <input
+                className='input'
+                type='text'
+                placeholder='tweetsheets'
+                onChange={this.handleTitleChange} />
+            </p>
+          </div>
 
-        {/* Tweet */}
-        <div className='field'>
-          <label className='label'>Tweet</label>
-          <p className='control'>
-            <textarea
-                placeholder='Hello @handle, how are you?'
-                className='textarea'
-                onChange={this.handleTweetChange}>
-              {this.state.tweet}
-            </textarea>
-          </p>
-          <p>{this.charsRemaining()} characters remaining</p>
-        </div>
+          {/* Description */}
+          <div className='field'>
+            <label className='label'>Description</label>
+            <p className='control'>
+              <input
+                className='input'
+                type='text'
+                placeholder='Short description'
+                onChange={this.handleDescriptionChange} />
+            </p>
+          </div>
 
-        <div className='field'>
-          <p className='control'>
-            <input type='submit' className='button is-primary' />
-          </p>
-        </div>
+          {/* Twitter Handles */ }
+          <div className='field'>
+            <label className='label'>Twitter handles</label>
+            <p className='control'>
+              <textarea
+                  placeholder='Twitter handles'
+                  className='textarea'
+                  onChange={this.handleHandlesChange}>
+                {this.state.handles}
+              </textarea>
+            </p>
+          </div>
 
-      </form>
+          {/* Tweet */}
+          <div className='field'>
+            <label className='label'>Tweet</label>
+            <p className='control'>
+              <textarea
+                  placeholder='Hello @handle, how are you?'
+                  className='textarea'
+                  onChange={this.handleTweetChange}>
+                {this.state.tweet}
+              </textarea>
+            </p>
+            <p>{this.charsRemaining()} characters remaining</p>
+          </div>
+
+          <div className='field'>
+            <p className='control'>
+              <input type='submit' className='button is-primary' />
+            </p>
+          </div>
+
+        </form>
+      </HeroWrapper>
     );
+  }
+
+  handleTitleChange(e) {
+    this.setState({ title: e.target.value });
+  }
+
+  handleDescriptionChange(e) {
+    this.setState({ description: e.target.value });
   }
 
   handleHandlesChange(e) {
@@ -66,6 +105,8 @@ export default class CreateView extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props.onCreate({
+      title: this.state.title,
+      description: this.state.description,
       handles: this.handlesToArray(),
       tweet: this.state.tweet
     })
@@ -93,10 +134,16 @@ export default class CreateView extends React.Component {
 }
 
 CreateView.propTypes = {
-  onCreate: React.PropTypes.func.isRequired
+  onCreate: React.PropTypes.func.isRequired,
+  title: React.PropTypes.string,
+  handles: React.PropTypes.string,
+  tweet: React.PropTypes.string
 };
 
 CreateView.defaultProps = {
+  title: '',
+  handles: '',
+  tweet: '',
   maxCharacters: 140,
   templateHandle: '@handle'
 };

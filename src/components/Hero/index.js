@@ -1,7 +1,8 @@
 
-import Hero from './Hero';
-import HeroWrapper from './HeroWrapper';
+import HeroComponent from './Hero';
+import HeroWrapperComponent from './HeroWrapper';
 
 export default Hero;
-export Hero;
-export HeroWrapper;
+
+export const Hero = HeroComponent;
+export const HeroWrapper = HeroWrapperComponent;

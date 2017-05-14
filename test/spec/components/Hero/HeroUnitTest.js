@@ -11,6 +11,11 @@ describe('Hero/Hero Unit Test', () => {
     expect(wrapper.text()).to.equal('tweetsheets');
   });
 
+  it('render `tweetsheets` when given empty string', () => {
+    const wrapper = shallow(<Hero title='' />);
+    expect(wrapper.text()).to.equal('tweetsheets');
+  });
+
   it('render overridden text', () => {
     const wrapper = shallow(<Hero title='override value' />);
     expect(wrapper.text()).to.equal('override value');
