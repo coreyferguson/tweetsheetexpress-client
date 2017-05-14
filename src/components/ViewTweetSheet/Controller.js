@@ -16,7 +16,10 @@ export default class Controller extends React.Component {
 
   render() {
     if (this.state.loading) return <h1>Loading...</h1>;
-    else return <View tweet={this.sheet.tweet} handles={this.sheet.handles} />;
+    else return <View
+      sheetId={this.props.params.id}
+      tweet={this.sheet.tweet}
+      handles={this.sheet.handles} />;
   }
 
   fetchTweetSheet() {

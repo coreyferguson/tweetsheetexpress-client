@@ -1,4 +1,5 @@
 
+import config from 'config';
 import React from 'react';
 import './View.scss';
 
@@ -54,8 +55,17 @@ export default class ViewTweetSheet extends React.Component {
       );
     });
     return (
-      <div>
+      <div className='tweet-sheet'>
+        <div className='download-csv is-clearfix'>
+          <a
+              className='is-pulled-right'
+              href={`${this.props.url}?id=${this.props.sheetId}`}>
+            Download Sheet
+          </a>
+        </div>
+
         {tweets}
+
       </div>
     );
   }
@@ -63,6 +73,12 @@ export default class ViewTweetSheet extends React.Component {
 }
 
 ViewTweetSheet.propTypes = {
+  sheetId: React.PropTypes.string.isRequired,
   tweet: React.PropTypes.string.isRequired,
-  handles: React.PropTypes.array.isRequired
-}
+  handles: React.PropTypes.array.isRequired,
+  url: React.PropTypes.string
+};
+
+ViewTweetSheet.defaultProps = {
+  url: `${config.api}/sheets/csv`
+};
