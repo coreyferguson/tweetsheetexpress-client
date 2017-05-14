@@ -61,7 +61,7 @@ export default class ViewTweetSheet extends React.Component {
 
           {/* Description */}
           <p className='subtitle'>
-            Description: {this.props.description}
+            {this.props.description}
           </p>
 
           {/* Download CSV */}

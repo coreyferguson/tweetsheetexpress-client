@@ -8,7 +8,7 @@
     "build": "npm run clean && ./node_modules/.bin/webpack && cp src/*html dist/",
     "deploy": "npm run build && node scripts/deploy",
     "test": "node_modules/.bin/karma start test/karma.conf.js --single-run",
-    "testManual": "NODE_ENV=local npm run build && node_modules/.bin/webpack-dev-server --https",
+    "testManual": "NODE_ENV=local npm run build && NODE_ENV=local node_modules/.bin/webpack-dev-server --https",
     "testWatch": "node_modules/.bin/karma start test/karma.conf.js --no-single-run"
   },
   "author": "Corey Ferguson <corey.t.ferguson@gmail.com>",
