@@ -45,7 +45,7 @@ export default class ViewTweetSheet extends React.Component {
 
               </div>
 
-              <p className='tweet-index column is-narrow'>
+              <p className='tweet-index column is-narrow is-hidden-mobile'>
                 {index+1}
               </p>
 
