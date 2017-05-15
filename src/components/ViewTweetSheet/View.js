@@ -19,7 +19,11 @@ export default class ViewTweetSheet extends React.Component {
       return (
         <div key={index} className='tweet-box box'>
           <div className='content'>
-            <div className='columns'>
+            <div className='columns is-mobile'>
+
+              <p className='tweet-index column is-narrow'>
+                {index+1}
+              </p>
 
               <div className='column'>
 
@@ -45,10 +49,6 @@ export default class ViewTweetSheet extends React.Component {
                 </a>
 
               </div>
-
-              <p className='tweet-index column is-narrow is-hidden-mobile'>
-                {index+1}
-              </p>
 
             </div>
           </div>

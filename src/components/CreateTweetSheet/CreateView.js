@@ -142,6 +142,7 @@ CreateView.propTypes = {
 
 CreateView.defaultProps = {
   title: '',
+  description: '',
   handles: '',
   tweet: '',
   maxCharacters: 140,

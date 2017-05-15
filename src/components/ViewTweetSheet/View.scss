@@ -5,7 +5,8 @@
     background-color: #23d160;
   }
 
-  .tweet-index {
+
+  p:not(:last-child).tweet-index {
     font-size: 400%;
     margin-bottom: 0px;
     color: #ccc;
