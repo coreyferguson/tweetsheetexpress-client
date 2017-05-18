@@ -9,6 +9,7 @@ describe('ViewTweetSheet/View Unit Test', () => {
   it('render 3 tweet messages', () => {
     const wrapper = shallow(
       <View
+        sheetId='1234'
         handles={[
           '@Corey', '@Zoe', '@Julian'
         ]}
@@ -26,7 +27,10 @@ describe('ViewTweetSheet/View Unit Test', () => {
 
   it('uri encode tweet', () => {
     const wrapper = shallow(
-      <View handles={['@Corey']} tweet='mention @someone with #hashtag' />
+      <View
+        sheetId='1234'
+        handles={['@Corey']}
+        tweet='mention @someone with #hashtag' />
     );
     expect(wrapper.find('.tweet-link').at(0).html())
       .to.match(/mention%20%40someone%20with%20%23hashtag/);

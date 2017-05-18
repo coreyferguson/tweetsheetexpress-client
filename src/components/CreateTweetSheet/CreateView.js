@@ -127,6 +127,7 @@ export default class CreateView extends React.Component {
   handlesToArray() {
     return this.state.handles
       .replace(/[\n,]/g, ' ')
+      .replace(/ +/g, ' ')
       .trim()
       .split(' ');
   }
