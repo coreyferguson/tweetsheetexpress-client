@@ -77,7 +77,13 @@ export default class CreateView extends React.Component {
 
           <div className='field'>
             <p className='control'>
-              <input type='submit' className='button is-primary' />
+              <button
+                type='submit'
+                className={'button is-primary' + ((this.props.loading) ? ' is-loading' : '')}
+              >
+                Save
+              </button>
+
             </p>
           </div>
 
@@ -109,7 +115,7 @@ export default class CreateView extends React.Component {
       description: this.state.description,
       handles: this.handlesToArray(),
       tweet: this.state.tweet
-    })
+    });
   }
 
   charsRemaining() {
@@ -138,7 +144,8 @@ CreateView.propTypes = {
   onCreate: React.PropTypes.func.isRequired,
   title: React.PropTypes.string,
   handles: React.PropTypes.string,
-  tweet: React.PropTypes.string
+  tweet: React.PropTypes.string,
+  loading: React.PropTypes.bool
 };
 
 CreateView.defaultProps = {
@@ -147,5 +154,6 @@ CreateView.defaultProps = {
   handles: '',
   tweet: '',
   maxCharacters: 140,
-  templateHandle: '@handle'
+  templateHandle: '@handle',
+  loading: false
 };
