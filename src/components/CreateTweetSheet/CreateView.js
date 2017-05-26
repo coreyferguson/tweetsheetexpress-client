@@ -87,11 +87,9 @@ export default class CreateView extends React.Component {
 CreateView.propTypes = {
   onCreate: React.PropTypes.func.isRequired,
   title: React.PropTypes.string,
+  description: React.PropTypes.string,
   tweetSets: React.PropTypes.array,
-  handles: React.PropTypes.string,
-  tweet: React.PropTypes.string,
   loading: React.PropTypes.bool,
-  maxCharacters: React.PropTypes.number
 };
 
 CreateView.defaultProps = {
@@ -101,7 +99,5 @@ CreateView.defaultProps = {
     handles: '',
     tweet: ''
   ],
-  maxCharacters: 140,
-  templateHandle: '@handle',
   loading: false
 };

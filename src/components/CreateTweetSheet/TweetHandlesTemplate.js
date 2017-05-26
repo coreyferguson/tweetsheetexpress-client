@@ -5,11 +5,10 @@ export default class TweetHandlesTemplate extends React.Component {
 
   constructor(props) {
     super(props);
-    console.log('props:', props);
-    this.setState({
+    this.state = {
       handles: props.handles,
       tweet: props.tweet
-    });
+    };
   }
 
   render() {
@@ -78,11 +77,15 @@ export default class TweetHandlesTemplate extends React.Component {
 }
 
 TweetHandlesTemplate.propTypes = {
+  tweet: React.PropTypes.string,
+  handles: React.PropTypes.string,
   templateHandle: React.PropTypes.string,
   maxCharacters: React.PropTypes.number
 };
 
 TweetHandlesTemplate.defaultProps = {
+  tweet: '',
+  handles: '',
   templateHandle: '@handle',
   maxCharacters: 140
 };
