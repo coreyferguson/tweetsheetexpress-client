@@ -95,9 +95,9 @@ CreateView.propTypes = {
 CreateView.defaultProps = {
   title: '',
   description: '',
-  tweetSets: [
+  tweetSets: [{
     handles: '',
     tweet: ''
-  ],
+  }],
   loading: false
 };
