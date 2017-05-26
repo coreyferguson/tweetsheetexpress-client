@@ -1,10 +1,10 @@
 
 import React from 'react';
 import { shallow } from 'enzyme';
-import CreateView from '../../../../src/components/CreateTweetSheet/CreateView';
+import TweetHandlesTemplate from '../../../../src/components/CreateTweetSheet/TweetHandlesTemplate';
 import { expect, sinon } from '../../../support/TestUtils';
 
-describe('CreateTweetSheet/CreateView Unit Test', () => {
+describe.only('CreateTweetSheet/TweetHandlesTemplate Unit Test', () => {
 
   const sandbox = sinon.sandbox.create();
 
@@ -13,64 +13,78 @@ describe('CreateTweetSheet/CreateView Unit Test', () => {
   });
 
   it('handlesToArray', () => {
-    const wrapper = shallow(<CreateView onCreate={() => {}} />);
+    const wrapper = shallow(<TweetHandlesTemplate />);
     wrapper.setState({
-      handles: '@one @two',
-      tweet: 'hello @handle'
+      tweetSets: [{
+        handles: '@one @two',
+        tweet: 'hello @handle'
+      }]
     });
     expect(wrapper.instance().handlesToArray()).to.eql(['@one', '@two']);
   });
 
   it('handlesToArray with prepended spaces', () => {
-    const wrapper = shallow(<CreateView onCreate={() => {}} />);
+    const wrapper = shallow(<TweetHandlesTemplate />);
     wrapper.setState({
-      handles: '  @one @two',
-      tweet: 'hello @handle'
+      tweetSets: [{
+        handles: '  @one @two',
+        tweet: 'hello @handle'
+      }]
     });
     expect(wrapper.instance().handlesToArray()).to.eql(['@one', '@two']);
   });
 
   it('handlesToArray with appended spaces', () => {
-    const wrapper = shallow(<CreateView onCreate={() => {}} />);
+    const wrapper = shallow(<TweetHandlesTemplate />);
     wrapper.setState({
-      handles: '@one @two  ',
-      tweet: 'hello @handle'
+      tweetSets: [{
+        handles: '@one @two  ',
+        tweet: 'hello @handle'
+      }]
     });
     expect(wrapper.instance().handlesToArray()).to.eql(['@one', '@two']);
   });
 
   it('handlesToArray with extra spaces in middle', () => {
-    const wrapper = shallow(<CreateView onCreate={() => {}} />);
+    const wrapper = shallow(<TweetHandlesTemplate />);
     wrapper.setState({
-      handles: '@one  @two',
-      tweet: 'hello @handle'
+      tweetSets: [{
+        handles: '@one  @two',
+        tweet: 'hello @handle'
+      }]
     });
     expect(wrapper.instance().handlesToArray()).to.eql(['@one', '@two']);
   });
 
   it('handlesToArray with prepended newlines', () => {
-    const wrapper = shallow(<CreateView onCreate={() => {}} />);
+    const wrapper = shallow(<TweetHandlesTemplate />);
     wrapper.setState({
-      handles: '\n\n@one\n@two',
-      tweet: 'hello @handle'
+      tweetSets: [{
+        handles: '\n\n@one\n@two',
+        tweet: 'hello @handle'
+      }]
     });
     expect(wrapper.instance().handlesToArray()).to.eql(['@one', '@two']);
   });
 
   it('handlesToArray with appended newlines', () => {
-    const wrapper = shallow(<CreateView onCreate={() => {}} />);
+    const wrapper = shallow(<TweetHandlesTemplate />);
     wrapper.setState({
-      handles: '@one\n@two\n\n',
-      tweet: 'hello @handle'
+      tweetSets: [{
+        handles: '@one\n@two\n\n',
+        tweet: 'hello @handle'
+      }]
     });
     expect(wrapper.instance().handlesToArray()).to.eql(['@one', '@two']);
   });
 
   it('handlesToArray with extra newlines in middle', () => {
-    const wrapper = shallow(<CreateView onCreate={() => {}} />);
+    const wrapper = shallow(<TweetHandlesTemplate />);
     wrapper.setState({
-      handles: '@one\n\n@two',
-      tweet: 'hello @handle'
+      tweetSets: [{
+        handles: '@one\n\n@two',
+        tweet: 'hello @handle'
+      }]
     });
     expect(wrapper.instance().handlesToArray()).to.eql(['@one', '@two']);
   });
