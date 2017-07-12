@@ -51,7 +51,7 @@ module.exports = {
     ]
   },
 
-  devtool: 'cheap-module-eval-source-map',
+  devtool: 'inline-source-map',
   devServer: {
     contentBase: path.resolve(__dirname, 'dist'),
     compress: true,

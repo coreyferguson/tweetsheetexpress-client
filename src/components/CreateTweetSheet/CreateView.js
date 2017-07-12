@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { HeroWrapper } from '../Hero';
+import TweetHandlesTemplate from './TweetHandlesTemplate';
 
 export default class CreateView extends React.Component {
 
@@ -13,12 +14,17 @@ export default class CreateView extends React.Component {
     }
     this.handleTitleChange = this.handleTitleChange.bind(this);
     this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
-    this.handleHandlesChange = this.handleHandlesChange.bind(this);
-    this.handleTweetChange = this.handleTweetChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   render() {
+    const tweetHandles = this.state.tweetSets.map((tweetSet, index) => {
+      return <TweetHandlesTemplate
+        key={index}
+        tweet={tweetSet.tweet}
+        handles={tweetSet.handles} />;
+    });
+
     return (
       <HeroWrapper title={this.state.title}>
         <form onSubmit={this.handleSubmit}>
@@ -46,6 +52,9 @@ export default class CreateView extends React.Component {
                 onChange={this.handleDescriptionChange} />
             </p>
           </div>
+
+          {/* TweetHandles */}
+          {tweetHandles}
 
           <div className='field'>
             <p className='control'>
@@ -77,10 +86,38 @@ export default class CreateView extends React.Component {
     this.props.onCreate({
       title: this.state.title,
       description: this.state.description,
+      tweetSets:
       handles: this.handlesToArray(),
       tweet: this.state.tweet
     });
   }
+
+  handlesToArray() {
+    console.log(this.state.tweetSets);
+    return this.state.handles
+      .replace(/[\n,]/g, ' ')
+      .replace(/ +/g, ' ')
+      .trim()
+      .split(' ');
+
+
+    // return this.state.tweetSets.reduce((acc, val) => {
+    //   const handles = val.handles
+    //     .replace(/[\n,]/g, ' ')
+    //     .replace(/ +/g, ' ')
+    //     .trim()
+    //     .split(' ');
+    //   return [...acc, ...handles];
+    // }, []);
+    // return this.state.tweetSets.reduce((acc, val) => {
+    //   return [ ...acc, val ];
+    // }, [])
+  }
+    // return this.state.handles
+    //   .replace(/[\n,]/g, ' ')
+    //   .replace(/ +/g, ' ')
+    //   .trim()
+    //   .split(' ');
 
 }
 
@@ -96,7 +133,7 @@ CreateView.defaultProps = {
   title: '',
   description: '',
   tweetSets: [{
-    handles: '',
+    handles: [],
     tweet: ''
   }],
   loading: false

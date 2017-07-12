@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import TweetHandlesTemplate from '../../../../src/components/CreateTweetSheet/TweetHandlesTemplate';
 import { expect, sinon } from '../../../support/TestUtils';
 
-describe.only('CreateTweetSheet/TweetHandlesTemplate Unit Test', () => {
+describe('CreateTweetSheet/TweetHandlesTemplate Unit Test', () => {
 
   const sandbox = sinon.sandbox.create();
 

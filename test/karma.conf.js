@@ -60,7 +60,7 @@ module.exports = function(config) {
     concurrency: Infinity,
 
     webpack: {
-      devtool: 'cheap-module-eval-source-map',
+      devtool: 'inline-source-map',
       module: {
         rules: [
           {
