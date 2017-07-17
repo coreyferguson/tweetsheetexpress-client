@@ -1,5 +1,26 @@
 
-To bring up a dev environment:
+# TODO
+
+- [x] New React PropTypes module
+- [x] Upgrade React et al.
+- [x] extract karma/webpack common config
+- [x] Upgrade react-router
+- [x] Fix tests
+- [x] Redux
+- [x] React-Redux
+- [x] Sourcemaps not showing correctly in errors when `npm run testManual`
+- [x] Missing `userId` request body property on `tweetAll`
+- [x] Rename `redux` folders to `state`.
+- [ ] Fix tests
+- [ ] Code coverage reporting
+- [ ] FE to tweet all assuming batch throttle time
+- [ ] FE to send userId w/ request from cookie
+- [ ] Common config for FE & BE
+- [ ] Redux - test non-200 status code errors
+- [ ] Unit tests take too long to bundle
+- [ ] Combine `*.html` and `webpack` bundle to `dist/` folder.
+
+# Dev Environment Setup
 
 - Create S3 bucket with same name as domain: `tweetsheets-dev.overattribution.com`
 - Create CloudFront `Web` distribution

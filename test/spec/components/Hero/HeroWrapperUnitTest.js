@@ -2,7 +2,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { expect } from '../../../support/TestUtils';
-import HeroWrapper from '../../../../src/components/Hero/HeroWrapper';
+import HeroWrapper from '../../../../src/Hero/HeroWrapper';
 
 describe('Hero/HeroWrapper Unit Test', () => {
 

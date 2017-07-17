@@ -1,7 +1,12 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Root from './components/Root';
+import Provider from './core/Provider';
+import Routes from './core/Routes';
 
-const element = React.createElement(Root);
-ReactDOM.render(element, document.getElementById('app'));
+ReactDOM.render(
+  <Provider>
+    <Routes />
+  </Provider>,
+  document.getElementById('app')
+);

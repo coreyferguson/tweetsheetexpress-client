@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { shallow } from 'enzyme';
-import View from '../../../../src/components/ViewTweetSheet/View';
+import View from '../../../../src/sheets/views/SheetsView/SheetsView';
 import { expect, sinon } from '../../../support/TestUtils';
 
 describe('ViewTweetSheet/View Unit Test', () => {

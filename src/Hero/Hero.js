@@ -1,4 +1,5 @@
 
+import PropTypes from 'prop-types';
 import React from 'react';
 
 export default function Hero(props) {
@@ -14,8 +15,8 @@ export default function Hero(props) {
   );
 }
 
-Hero.PropTypes = {
-  title: React.PropTypes.string
+Hero.propTypes = {
+  title: PropTypes.string
 };
 
 Hero.defaultProps = {

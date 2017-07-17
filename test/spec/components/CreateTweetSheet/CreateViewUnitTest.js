@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { shallow } from 'enzyme';
-import CreateView from '../../../../src/components/CreateTweetSheet/CreateView';
+import CreateView from '../../../../src/sheets/views/SheetsCreateView/SheetsCreateView';
 import { expect, sinon } from '../../../support/TestUtils';
 
 describe('CreateTweetSheet/CreateView Unit Test', () => {

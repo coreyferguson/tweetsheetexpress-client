@@ -1,5 +1,6 @@
 
 const path = require('path');
+const webpackModule = require('../config/webpack-module');
 
 const environment = process.env.NODE_ENV || 'dev';
 const envConfig = path.resolve(__dirname, `../config/${environment}.json`);
@@ -26,7 +27,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'test/spec/**/*.js': ['webpack']
+      'test/spec/**/*.js': ['webpack', 'sourcemap']
     },
 
     // test results reporter to use
@@ -60,42 +61,20 @@ module.exports = function(config) {
     concurrency: Infinity,
 
     webpack: {
-      devtool: 'cheap-module-eval-source-map',
-      module: {
-        rules: [
-          {
-            test: /\.jsx?$/,
-            exclude: /node_modules/,
-            use: {
-              loader: 'babel-loader',
-              options: {
-                presets: ['env', 'react']
-              }
-            }
-          },
-          {
-            test: /\.scss$/,
-            use: [{
-                loader: "style-loader" // creates style nodes from JS strings
-            }, {
-                loader: "css-loader" // translates CSS into CommonJS
-            }, {
-                loader: "sass-loader" // compiles Sass to CSS
-            }]
-          }
-        ]
-      },
+      devtool: 'inline-source-map',
+      module: webpackModule,
       resolve: {
         alias: {
           config: envConfig,
         },
       },
       externals: {
-        'react/addons': true,                      // pre-existing at enzyme 2.8.0
-        'react/lib/ExecutionEnvironment': true,    // pre-existing at enzyme 2.8.0
-        'react/lib/ReactContext': true,            // pre-existing at enzyme 2.8.0
-        'react-dom/test-utils': true,
-        'react-test-renderer/shallow': true
+        // required for Enzyme and React 15
+        // https://github.com/airbnb/enzyme/blob/master/docs/guides/webpack.md
+        'react/addons': true,
+        'react/lib/ExecutionEnvironment': true,
+        'react/lib/ReactContext': true,
+        'react-addons-test-utils': 'react-dom'
       }
     }
 

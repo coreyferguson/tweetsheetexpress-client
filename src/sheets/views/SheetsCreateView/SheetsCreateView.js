@@ -1,6 +1,7 @@
 
+import PropTypes from 'prop-types';
 import React from 'react';
-import { HeroWrapper } from '../Hero';
+import { HeroWrapper } from '../../../Hero';
 
 export default class CreateView extends React.Component {
 
@@ -53,11 +54,10 @@ export default class CreateView extends React.Component {
             <label className='label'>Twitter handles</label>
             <p className='control'>
               <textarea
-                  placeholder='Twitter handles'
-                  className='textarea'
-                  onChange={this.handleHandlesChange}>
-                {this.state.handles}
-              </textarea>
+                placeholder='Twitter handles'
+                className='textarea'
+                onChange={this.handleHandlesChange}
+                defaultValue={this.state.handles} />
             </p>
           </div>
 
@@ -66,11 +66,10 @@ export default class CreateView extends React.Component {
             <label className='label'>Tweet</label>
             <p className='control'>
               <textarea
-                  placeholder='Hello @handle, how are you?'
-                  className='textarea'
-                  onChange={this.handleTweetChange}>
-                {this.state.tweet}
-              </textarea>
+                placeholder='Hello @handle, how are you?'
+                className='textarea'
+                onChange={this.handleTweetChange}
+                defaultValue={this.state.tweet} />
             </p>
             <p>{this.charsRemaining()} characters remaining</p>
           </div>
@@ -141,11 +140,11 @@ export default class CreateView extends React.Component {
 }
 
 CreateView.propTypes = {
-  onCreate: React.PropTypes.func.isRequired,
-  title: React.PropTypes.string,
-  handles: React.PropTypes.string,
-  tweet: React.PropTypes.string,
-  loading: React.PropTypes.bool
+  onCreate: PropTypes.func.isRequired,
+  title: PropTypes.string,
+  handles: PropTypes.string,
+  tweet: PropTypes.string,
+  loading: PropTypes.bool
 };
 
 CreateView.defaultProps = {

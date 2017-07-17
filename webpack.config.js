@@ -1,5 +1,6 @@
 
 const path = require('path');
+const webpackModule = require('./config/webpack-module');
 
 const environment = process.env.NODE_ENV || 'dev';
 const envConfig = path.resolve(__dirname, `./config/${environment}.json`);
@@ -18,43 +19,19 @@ module.exports = {
     },
   },
 
-
   externals: {
    'react': 'React',
    'react-dom': 'ReactDOM',
-   'react-router': 'ReactRouter',
+   'react-router-dom': 'ReactRouterDOM',
    'axios': 'axios'
   },
 
-  module: {
-    rules: [
-      {
-        test: /\.jsx?$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['env', 'react']
-          }
-        }
-      },
-      {
-        test: /\.scss$/,
-        use: [{
-            loader: "style-loader" // creates style nodes from JS strings
-        }, {
-            loader: "css-loader" // translates CSS into CommonJS
-        }, {
-            loader: "sass-loader" // compiles Sass to CSS
-        }]
-      }
-    ]
-  },
+  module: webpackModule,
 
-  devtool: 'cheap-module-eval-source-map',
+  devtool: 'inline-source-map',
   devServer: {
     contentBase: path.resolve(__dirname, 'dist'),
-    compress: true,
+    // compress: true,
     port: 3000
   }
 };
