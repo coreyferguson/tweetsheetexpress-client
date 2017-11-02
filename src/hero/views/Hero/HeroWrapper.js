@@ -4,8 +4,6 @@ import React from 'react';
 import Hero from './Hero';
 import Nav from '../../../Nav';
 
-console.log('HeroWrapper.js initialized');
-
 export default function HeroWrapper(props) {
   return (
     <div>

@@ -9,11 +9,17 @@ describe('ViewTweetSheet/View Unit Test', () => {
   it('render 3 tweet messages', () => {
     const wrapper = shallow(
       <View
+        loading={false}
+        sheet={
+          {
+            id: 1,
+            tweet: 'Hello @handle!',
+            handles: [
+              '@Corey', '@Zoe', '@Julian'
+            ]
+          }
+        }
         sheetId='1234'
-        handles={[
-          '@Corey', '@Zoe', '@Julian'
-        ]}
-        tweet='Hello @handle!'
       />
     );
     expect(wrapper.find('.tweet-message')).to.have.length(3);
@@ -28,9 +34,15 @@ describe('ViewTweetSheet/View Unit Test', () => {
   it('uri encode tweet', () => {
     const wrapper = shallow(
       <View
-        sheetId='1234'
-        handles={['@Corey']}
-        tweet='mention @someone with #hashtag' />
+        loading={false}
+        sheet={
+          {
+            id: '1234',
+            tweet: 'mention @someone with #hashtag',
+            handles: ['@Corey']
+          }
+        }
+      />
     );
     expect(wrapper.find('.tweet-link').at(0).html())
       .to.match(/mention%20%40someone%20with%20%23hashtag/);
