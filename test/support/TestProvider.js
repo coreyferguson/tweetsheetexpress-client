@@ -19,7 +19,9 @@ export default class TestProvider extends Component {
 
   render() {
     return (
-      <Provider middleware={this.middleware} />
+      <Provider middleware={this.middleware}>
+        {this.props.children}
+      </Provider>
     );
   }
 
