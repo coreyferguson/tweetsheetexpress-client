@@ -1,7 +1,7 @@
 
 import PropTypes from 'prop-types';
 import React from 'react';
-import { HeroWrapper } from '../../../Hero';
+import { HeroWrapper } from '../../../hero/views/Hero/Hero';
 
 export default class CreateView extends React.Component {
 
