@@ -8,13 +8,13 @@ import { mount } from 'enzyme';
 describe('Hero/HeroWrapper Integration Test', () => {
 
   // TODO: Revisit after refactoring `Nav` component
-  xit('title passed through to Hero component', () => {
+  it('title passed through to Hero component', () => {
     const wrapper = mount(
       <TestProvider>
         <HeroWrapper title='override value' />
       </TestProvider>
     );
-    expect(wrapper.text()).to.eql('override value');
+    expect(wrapper.text()).to.contain('override value');
   });
 
 });

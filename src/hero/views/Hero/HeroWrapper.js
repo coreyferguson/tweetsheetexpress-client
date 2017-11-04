@@ -1,8 +1,8 @@
 
+import Hero from './Hero';
+import Nav from '../../../nav/views/NavView';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Hero from './Hero';
-import Nav from '../../../Nav';
 
 export default function HeroWrapper(props) {
   return (

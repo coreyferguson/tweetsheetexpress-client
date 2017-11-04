@@ -1,6 +1,6 @@
 
 import { connect } from 'react-redux'
-import { getSession } from '../session/state/sessionActionCreators';
+import { getSession } from '../../../session/state/sessionActionCreators';
 
 const mapStateToProps = ({ session }) => session;
 
