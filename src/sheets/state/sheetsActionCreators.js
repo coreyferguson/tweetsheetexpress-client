@@ -1,7 +1,7 @@
 
 import actions from './sheetsActions';
 import service from '../service/sheetsService';
-import { push } from 'react-router-redux';
+import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux'
 
 export function createRequest() {
   return {
@@ -19,8 +19,15 @@ export function create(sheet) {
   return dispatch => {
     dispatch(createRequest());
     return service.save(sheet).then(res => {
+      console.log('A');
       dispatch(createResponse());
+      console.log('B');
+      console.log('res', res);
+      console.log('res.data', res.data);
+      console.log('res.data.id', res.data.id);
+      debugger;
       dispatch(push(`/sheets/${res.data.id}/share`));
+      console.log('C');
     });
   };
 }

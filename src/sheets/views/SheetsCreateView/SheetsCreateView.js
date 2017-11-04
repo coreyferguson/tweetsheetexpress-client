@@ -1,9 +1,9 @@
 
 import PropTypes from 'prop-types';
 import React from 'react';
-import { HeroWrapper } from '../../../hero/views/Hero/Hero';
+import { HeroWrapper } from '../../../hero/views/Hero';
 
-export default class CreateView extends React.Component {
+export default class SheetsCreateView extends React.Component {
 
   constructor(props) {
     super(props);
@@ -139,7 +139,7 @@ export default class CreateView extends React.Component {
 
 }
 
-CreateView.propTypes = {
+SheetsCreateView.propTypes = {
   onCreate: PropTypes.func.isRequired,
   title: PropTypes.string,
   handles: PropTypes.string,
@@ -147,7 +147,7 @@ CreateView.propTypes = {
   loading: PropTypes.bool
 };
 
-CreateView.defaultProps = {
+SheetsCreateView.defaultProps = {
   title: '',
   description: '',
   handles: '',

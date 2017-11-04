@@ -4,10 +4,10 @@ import createStore from './createStore';
 import React, { Component } from 'react';
 import thunkMiddleware from 'redux-thunk';
 import { applyMiddleware } from 'redux';
-import { ConnectedRouter } from 'react-router-redux';
 import { createLogger } from 'redux-logger';
 import { Provider } from 'react-redux';
-import { routerMiddleware } from 'react-router-redux';
+import { Route } from 'react-router'
+import { ConnectedRouter, routerMiddleware } from 'react-router-redux';
 
 export default class AppProvider extends Component {
 
@@ -18,12 +18,9 @@ export default class AppProvider extends Component {
     let middleware = props.middleware || applyMiddleware(
       thunkMiddleware, // enables dispatch() functions
       createLogger(), // logs actions
-      routerMiddleware(history),
+      routerMiddleware(this.history),
     );
-    this.store = createStore(
-      this.history,
-      middleware
-    );
+    this.store = createStore(middleware);
   }
 
   render() {

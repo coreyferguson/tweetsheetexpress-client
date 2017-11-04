@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { HeroWrapper } from '../../../hero/views/Hero/Hero'
+import { HeroWrapper } from '../../../hero/views/Hero'
 import './style.scss';
 
 export default class SheetsView extends Component {

@@ -6,12 +6,12 @@
   "scripts": {
     "build": "npm run clean && npm run html && npm run webpack",
     "clean": "rm -fr dist",
-    "html": "mkdir -p dist && cp src/*html dist/",
-    "webpack": "./node_modules/.bin/webpack",
     "deploy": "npm run build && node scripts/deploy",
+    "html": "mkdir -p dist && cp src/*html dist/",
+    "start": "npm run clean && npm run html && NODE_ENV=local node_modules/.bin/webpack-dev-server --debug --output-pathinfo --public local.tweetsheets-dev.overattribution.com:3000 --https",
     "test": "node_modules/.bin/karma start test/karma.conf.js --single-run",
-    "testManual": "npm run clean && npm run html && NODE_ENV=local node_modules/.bin/webpack-dev-server --debug --output-pathinfo --public local.tweetsheets-dev.overattribution.com:3000 --https",
-    "watch": "node_modules/.bin/karma start test/karma.conf.js --no-single-run"
+    "watch": "node_modules/.bin/karma start test/karma.conf.js --no-single-run",
+    "webpack": "./node_modules/.bin/webpack"
   },
   "author": "Corey Ferguson <corey.t.ferguson@gmail.com>",
   "license": "MIT",
@@ -57,6 +57,8 @@
   },
   "dependencies": {
     "aws-sdk": "^2.49.0",
+    "history": "^4.7.2",
+    "react-router-redux": "^5.0.0-alpha.8",
     "s3": "^4.4.0"
   }
 }
