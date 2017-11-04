@@ -23,10 +23,10 @@ export default (
       });
     case actions.VIEW_RESPONSE:
       const entities = Object.assign({}, state.sheets);
-      entities[action.sheet.id] = action.sheet;
+      entities[action.userSheet.sheetId] = action.userSheet;
       return Object.assign({}, state, {
         loading: false,
-        selectedSheetId: action.sheet.id,
+        selectedSheetId: action.userSheet.sheetId,
         entities
       });
     default:

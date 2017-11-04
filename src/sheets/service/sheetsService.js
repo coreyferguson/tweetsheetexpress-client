@@ -16,6 +16,7 @@ export class SheetService {
     return this._axios({
       method: 'POST',
       url: this._url,
+      withCredentials: true,
       data: sheet
     });
   }
@@ -24,6 +25,7 @@ export class SheetService {
     return this._axios({
       method: 'GET',
       url: this._url,
+      withCredentials: true,
       params: {
         id: sheetId
       }
@@ -34,8 +36,8 @@ export class SheetService {
     return this._axios({
       method: 'POST',
       url: `${this._url}/tweet`,
-      data: { sheetId },
-      withCredentials: true
+      withCredentials: true,
+      data: { sheetId }
     });
   }
 

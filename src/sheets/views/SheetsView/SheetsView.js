@@ -34,9 +34,9 @@ export default class SheetsView extends Component {
   }
 
   mainView() {
-    if (!this.props.sheet) return undefined;
+    if (!this.props.userSheet) return undefined;
     else {
-      const tweetViews = this.props.sheet.handles.map(this.tweetView.bind(this));
+      const tweetViews = this.props.userSheet.sheet.handles.map(this.tweetView.bind(this));
       return (
         <div className='tweet-sheet'>
 
@@ -76,7 +76,7 @@ export default class SheetsView extends Component {
 
   tweetView(handle, index) {
     const plainTextHandle = handle.replace('@', '');
-    const tweet = this.props.sheet.tweet.replace(new RegExp('@handle', 'g'), handle);
+    const tweet = this.props.userSheet.sheet.tweet.replace(new RegExp('@handle', 'g'), handle);
     const tweetEncoded = encodeURIComponent(tweet);
     const tweetHref = `https://twitter.com/intent/tweet?text=${tweetEncoded}`;
     return (
