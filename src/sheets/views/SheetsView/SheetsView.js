@@ -187,7 +187,7 @@ export default class SheetsView extends Component {
       alert('Please wait until the given time has elapsed before tweeting another batch.');
     } else {
       this.setState({
-        nextTweetsheetBatch: moment().add(5, 'minutes')
+        nextTweetsheetBatch: moment().add(4, 'minutes').add(30, 'seconds')
       });
       this.props.onTweetAll(this.props.match.params.id)
     }
