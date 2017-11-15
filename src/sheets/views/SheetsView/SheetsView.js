@@ -102,6 +102,7 @@ export default class SheetsView extends Component {
   }
 
   tweetBatchButton() {
+    if (!this.props.authorized) return;
     if (!this.state.nextTweetsheetBatchDelta) return (
       <div className='tweet-all'>
         <button
@@ -138,15 +139,17 @@ export default class SheetsView extends Component {
               {index+1}
             </p>
 
-            <p className='tweet-completion column is-narrow'>
-              <i
-                className={'fa ' + (
-                  !completed
-                  ? 'fa-square-o tweet-complete'
-                  : 'fa-check-square-o tweet-incomplete'
-                )}
-                aria-hidden='true'></i>
-            </p>
+            {this.props.authorized &&
+              <p className='tweet-completion column is-narrow'>
+                <i
+                  className={'fa ' + (
+                    !completed
+                    ? 'fa-square-o tweet-complete'
+                    : 'fa-check-square-o tweet-incomplete'
+                  )}
+                  aria-hidden='true'></i>
+              </p>
+            }
 
             <div className='column'>
 
