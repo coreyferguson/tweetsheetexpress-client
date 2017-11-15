@@ -1,6 +1,22 @@
 
 .tweet-sheet {
 
+  .tweet-completion {
+    font-size: 400%;
+    i {
+      margin-top: 21px;
+    }
+
+    .tweet-complete {
+      color: #ccc;
+    }
+    .tweet-incomplete {
+      color: #afa;
+    }
+  }
+
+
+
   a.tweet-link:visited {
     background-color: #23d160;
   }

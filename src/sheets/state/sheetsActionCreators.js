@@ -20,7 +20,6 @@ export function create(sheet) {
     dispatch(createRequest());
     return service.save(sheet).then(res => {
       dispatch(createResponse());
-      debugger;
       dispatch(push(`/sheets/${res.data.id}/share`));
     });
   };
@@ -54,9 +53,10 @@ export function tweetAllRequest() {
   };
 }
 
-export function tweetAllResponse(sheet) {
+export function tweetAllResponse(userSheet) {
   return {
-    type: actions.TWEET_ALL_RESPONSE
+    type: actions.TWEET_ALL_RESPONSE,
+    userSheet
   };
 }
 

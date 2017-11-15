@@ -22,6 +22,7 @@ export default (
         loading: true
       });
     case actions.VIEW_RESPONSE:
+    case actions.TWEET_ALL_RESPONSE:
       const entities = Object.assign({}, state.sheets);
       entities[action.userSheet.sheetId] = action.userSheet;
       return Object.assign({}, state, {

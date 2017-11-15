@@ -58,6 +58,7 @@
   "dependencies": {
     "aws-sdk": "^2.49.0",
     "history": "^4.7.2",
+    "moment": "^2.19.2",
     "react-router-redux": "^5.0.0-alpha.8",
     "s3": "^4.4.0"
   }

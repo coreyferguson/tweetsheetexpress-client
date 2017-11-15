@@ -3,16 +3,44 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { HeroWrapper } from '../../../hero/views/Hero'
 import './style.scss';
+import moment from 'moment';
 
 export default class SheetsView extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      nextTweetsheetBatch: moment(),
+      nextTweetsheetBatchDelta: null
+    };
     this.handleTweetAll = this.handleTweetAll.bind(this);
+    this.tick = this.tick.bind(this);
   }
 
   componentDidMount() {
     this.props.onMount(this.props.match.params.id);
+    let timer = setInterval(this.tick, 1000);
+    this.setState({ timer });
+  }
+
+  componentWillUnmount() {
+    this.clearInterval(this.state.timer);
+  }
+
+  tick() {
+    if (moment().isAfter(this.state.nextTweetsheetBatch)) {
+      this.setState({
+        nextTweetsheetBatchDelta: null
+      });
+    } else {
+      const duration = moment.duration(this.state.nextTweetsheetBatch.diff(moment()));
+      const nextTweetsheetBatchDelta = (duration.asSeconds() < 60)
+        ? `in ${duration.seconds()} seconds`
+        : `in ${duration.minutes()+1} minutes`
+      this.setState({
+        nextTweetsheetBatchDelta
+      });
+    }
   }
 
   render() {
@@ -36,7 +64,14 @@ export default class SheetsView extends Component {
   mainView() {
     if (!this.props.userSheet) return undefined;
     else {
-      const tweetViews = this.props.userSheet.sheet.handles.map(this.tweetView.bind(this));
+      const tweetViews =
+        (!this.props.authorized)
+        ? this.props.userSheet.sheet.handles
+          .map(handle => {
+            return { completed: false, handle }
+          })
+          .map(this.tweetView.bind(this))
+        : this.props.userSheet.completions.map(this.tweetView.bind(this));
       return (
         <div className='tweet-sheet'>
 
@@ -45,14 +80,7 @@ export default class SheetsView extends Component {
             {this.props.description}
           </p>
 
-          {/* Tweet All */}
-          <div className='tweet-all'>
-            <button
-                className='button is-pulled-right'
-                onClick={this.handleTweetAll}>
-              Tweet All
-            </button>
-          </div>
+          {this.tweetBatchButton()}
 
           {/* Download CSV */}
           <div className='download-csv is-clearfix'>
@@ -62,7 +90,6 @@ export default class SheetsView extends Component {
               Download Sheet
             </a>
           </div>
-
 
           {/* Tweets */}
           <div className='tweets'>
@@ -74,7 +101,30 @@ export default class SheetsView extends Component {
     }
   }
 
-  tweetView(handle, index) {
+  tweetBatchButton() {
+    if (!this.state.nextTweetsheetBatchDelta) return (
+      <div className='tweet-all'>
+        <button
+            className='button is-pulled-right'
+            onClick={this.handleTweetAll}>
+          Tweet Batch
+        </button>
+      </div>
+    )
+    else return (
+      <div className='tweet-all'>
+        <button
+            className='button is-pulled-right'
+            onClick={this.handleTweetAll}>
+          Tweet again {this.state.nextTweetsheetBatchDelta}
+        </button>
+      </div>
+    );
+  }
+
+  tweetView(completion, index) {
+    const completed = completion.completed;
+    const handle = completion.handle;
     const plainTextHandle = handle.replace('@', '');
     const tweet = this.props.userSheet.sheet.tweet.replace(new RegExp('@handle', 'g'), handle);
     const tweetEncoded = encodeURIComponent(tweet);
@@ -88,6 +138,16 @@ export default class SheetsView extends Component {
               {index+1}
             </p>
 
+            <p className='tweet-completion column is-narrow'>
+              <i
+                className={'fa ' + (
+                  !completed
+                  ? 'fa-square-o tweet-complete'
+                  : 'fa-check-square-o tweet-incomplete'
+                )}
+                aria-hidden='true'></i>
+            </p>
+
             <div className='column'>
 
               {/* Tweet message */}
@@ -99,7 +159,7 @@ export default class SheetsView extends Component {
                   target='_blank'
                   href={tweetHref}
                   className='tweet-link button is-primary has-text-right'>
-                Tweet
+                Tweet {completed ? 'Again' : '' }
               </a>
 
               {/* Twitter handle owner */}
@@ -120,7 +180,14 @@ export default class SheetsView extends Component {
   }
 
   handleTweetAll() {
-    this.props.onTweetAll(this.props.match.params.id)
+    if (this.state.nextTweetsheetBatchDelta) {
+      alert('Please wait until the given time has elapsed before tweeting another batch.');
+    } else {
+      this.setState({
+        nextTweetsheetBatch: moment().add(5, 'minutes')
+      });
+      this.props.onTweetAll(this.props.match.params.id)
+    }
   }
 
 }

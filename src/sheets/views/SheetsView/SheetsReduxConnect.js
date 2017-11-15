@@ -5,6 +5,7 @@ import { view, tweetAll } from '../../state/sheetsActionCreators';
 const mapStateToProps = state => {
   return {
     loading: state.sheets.loading,
+    authorized: state.session.data.authorized,
     userSheet: state.sheets.entities[state.sheets.selectedSheetId]
   };
 };

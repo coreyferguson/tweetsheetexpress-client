@@ -16,7 +16,6 @@ export class SheetService {
     return this._axios({
       method: 'POST',
       url: this._url,
-      withCredentials: true,
       data: sheet
     });
   }
