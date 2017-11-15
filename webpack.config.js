@@ -20,10 +20,14 @@ module.exports = {
   },
 
   externals: {
+   'axios': true,
+   'moment': true,
    'react': 'React',
    'react-dom': 'ReactDOM',
+   'react-redux': 'ReactRedux',
+   'react-router': 'ReactRouter',
    'react-router-dom': 'ReactRouterDOM',
-   'axios': 'axios'
+   'redux': 'Redux'
   },
 
   module: webpackModule,
