@@ -135,9 +135,11 @@ export default class SheetsView extends Component {
         <div className='content'>
           <div className='columns is-mobile'>
 
-            <p className='tweet-index column is-narrow'>
-              {index+1}
-            </p>
+            {!this.props.authorized &&
+              <p className='tweet-index column is-narrow'>
+                {index+1}
+              </p>
+            }
 
             {this.props.authorized &&
               <p className='tweet-completion column is-narrow'>
