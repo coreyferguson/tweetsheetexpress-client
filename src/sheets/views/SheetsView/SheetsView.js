@@ -136,13 +136,13 @@ export default class SheetsView extends Component {
           <div className='columns is-mobile'>
 
             {!this.props.authorized &&
-              <p className='tweet-index column is-narrow'>
+              <div className='tweet-index column is-narrow'>
                 {index+1}
-              </p>
+              </div>
             }
 
             {this.props.authorized &&
-              <p className='tweet-completion column is-narrow'>
+              <div className='tweet-completion column is-narrow'>
                 <i
                   className={'fa ' + (
                     !completed
@@ -150,7 +150,7 @@ export default class SheetsView extends Component {
                     : 'fa-check-square-o tweet-incomplete'
                   )}
                   aria-hidden='true'></i>
-              </p>
+              </div>
             }
 
             <div className='column'>
