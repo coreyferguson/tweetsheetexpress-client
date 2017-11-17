@@ -1,7 +1,8 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { HeroWrapper } from '../../../hero/views/Hero'
+import { HeroWrapper } from '../../../hero/views/Hero';
+import TweetBatchButton from './TweetBatchButton';
 import './style.scss';
 import moment from 'moment';
 
@@ -11,7 +12,7 @@ export default class SheetsView extends Component {
     super(props);
     this.state = {
       nextTweetsheetBatch: moment(),
-      nextTweetsheetBatchDelta: null
+      nextTweetsheetBatchMessage: null
     };
     this.handleTweetAll = this.handleTweetAll.bind(this);
     this.tick = this.tick.bind(this);
@@ -30,15 +31,15 @@ export default class SheetsView extends Component {
   tick() {
     if (moment().isAfter(this.state.nextTweetsheetBatch)) {
       this.setState({
-        nextTweetsheetBatchDelta: null
+        nextTweetsheetBatchMessage: null
       });
     } else {
       const duration = moment.duration(this.state.nextTweetsheetBatch.diff(moment()));
-      const nextTweetsheetBatchDelta = (duration.asSeconds() < 60)
+      const nextTweetsheetBatchMessage = (duration.asSeconds() < 60)
         ? `in ${duration.seconds()} seconds`
         : `in ${duration.minutes()+1} minutes`
       this.setState({
-        nextTweetsheetBatchDelta
+        nextTweetsheetBatchMessage
       });
     }
   }
@@ -80,7 +81,13 @@ export default class SheetsView extends Component {
             {this.props.description}
           </p>
 
-          {this.tweetBatchButton()}
+          {/* Tweet Batch */}
+          {
+            this.props.authorized &&
+            <TweetBatchButton
+              nextBatchMessage={this.state.nextTweetsheetBatchMessage}
+              onClick={this.handleTweetAll} />
+          }
 
           {/* Download CSV */}
           <div className='download-csv is-clearfix'>
@@ -99,28 +106,6 @@ export default class SheetsView extends Component {
         </div>
       );
     }
-  }
-
-  tweetBatchButton() {
-    if (!this.props.authorized) return;
-    if (!this.state.nextTweetsheetBatchDelta) return (
-      <div className='tweet-all'>
-        <button
-            className='button is-pulled-right'
-            onClick={this.handleTweetAll}>
-          Tweet Batch
-        </button>
-      </div>
-    )
-    else return (
-      <div className='tweet-all'>
-        <button
-            className='button is-pulled-right'
-            onClick={this.handleTweetAll}>
-          Tweet again {this.state.nextTweetsheetBatchDelta}
-        </button>
-      </div>
-    );
   }
 
   tweetView(completion, index) {
