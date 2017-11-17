@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { HeroWrapper } from '../../../hero/views/Hero';
 import TweetBatchButton from './TweetBatchButton';
+import TweetView from './TweetView';
 import './style.scss';
 import moment from 'moment';
 
@@ -65,14 +66,19 @@ export default class SheetsView extends Component {
   mainView() {
     if (!this.props.userSheet) return undefined;
     else {
-      const tweetViews =
-        (!this.props.authorized)
-        ? this.props.userSheet.sheet.handles
-          .map(handle => {
+      const completions = this.props.authorized
+        ? this.props.userSheet.completions
+        : this.props.userSheet.sheet.handles.map(handle => {
             return { completed: false, handle }
-          })
-          .map(this.tweetView.bind(this))
-        : this.props.userSheet.completions.map(this.tweetView.bind(this));
+          });
+      const tweetViews = completions.map((completion, index) =>
+        <TweetView
+          key={index}
+          index={index}
+          completion={completion}
+          authorized={this.props.authorized}
+          tweet={this.props.userSheet.sheet.tweet} />
+      );
       return (
         <div className='tweet-sheet'>
 
@@ -106,67 +112,6 @@ export default class SheetsView extends Component {
         </div>
       );
     }
-  }
-
-  tweetView(completion, index) {
-    const completed = completion.completed;
-    const handle = completion.handle;
-    const plainTextHandle = handle.replace('@', '');
-    const tweet = this.props.userSheet.sheet.tweet.replace(new RegExp('@handle', 'g'), handle);
-    const tweetEncoded = encodeURIComponent(tweet);
-    const tweetHref = `https://twitter.com/intent/tweet?text=${tweetEncoded}`;
-    return (
-      <div key={index} className='tweet-box box'>
-        <div className='content'>
-          <div className='columns is-mobile'>
-
-            {!this.props.authorized &&
-              <div className='tweet-index column is-narrow'>
-                {index+1}
-              </div>
-            }
-
-            {this.props.authorized &&
-              <div className='tweet-completion column is-narrow'>
-                <i
-                  className={'fa ' + (
-                    !completed
-                    ? 'fa-square-o tweet-complete'
-                    : 'fa-check-square-o tweet-incomplete'
-                  )}
-                  aria-hidden='true'></i>
-              </div>
-            }
-
-            <div className='column'>
-
-              {/* Tweet message */}
-              <p className='tweet-message subtitle'>{tweet}</p>
-
-              {/* Tweet button */}
-              <a
-                  title='Tweet this'
-                  target='_blank'
-                  href={tweetHref}
-                  className='tweet-link button is-primary has-text-right'>
-                Tweet {completed ? 'Again' : '' }
-              </a>
-
-              {/* Twitter handle owner */}
-              <a
-                  title='Twitter handle owner'
-                  className="button is-link"
-                  target='_blank'
-                  href={`https://twitter.com/${plainTextHandle}`}>
-                Who is this?
-              </a>
-
-            </div>
-
-          </div>
-        </div>
-      </div>
-    );
   }
 
   handleTweetAll() {
