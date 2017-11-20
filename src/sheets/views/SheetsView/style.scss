@@ -1,6 +1,24 @@
 
 .tweet-sheet {
 
+  .tweet-sheet-progress {
+    text-align: center;
+    .tweet-sheet-progress-denominator {
+      border: 1px solid #ddd;
+      margin-bottom: 2em;
+      position: relative;
+    }
+    .tweet-sheet-progress-numerator {
+      background-color: #00d1b2;
+    }
+    .tweet-sheet-progress-text {
+      position: absolute;
+      top: 0;
+      left: 50%;
+    }
+  }
+
+
   .tweet-index {
     font-size: 400%;
     margin-bottom: 0px;

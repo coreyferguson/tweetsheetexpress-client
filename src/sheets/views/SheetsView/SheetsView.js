@@ -1,11 +1,12 @@
 
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { HeroWrapper } from '../../../hero/views/Hero';
-import TweetBatchButton from './TweetBatchButton';
-import TweetView from './TweetView';
 import './style.scss';
 import moment from 'moment';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import SheetProgress from './SheetProgress';
+import TweetBatchButton from './TweetBatchButton';
+import TweetView from './TweetView';
+import { HeroWrapper } from '../../../hero/views/Hero';
 
 export default class SheetsView extends Component {
 
@@ -71,6 +72,8 @@ export default class SheetsView extends Component {
         : this.props.userSheet.sheet.handles.map(handle => {
             return { completed: false, handle }
           });
+      const denominator = completions.length;
+      const numerator = completions.filter(completion => completion.completed).length;
       const tweetViews = completions.map((completion, index) =>
         <TweetView
           key={index}
@@ -103,6 +106,8 @@ export default class SheetsView extends Component {
               Download Sheet
             </a>
           </div>
+
+          <SheetProgress numerator={numerator} denominator={denominator} />
 
           {/* Tweets */}
           <div className='tweets'>
