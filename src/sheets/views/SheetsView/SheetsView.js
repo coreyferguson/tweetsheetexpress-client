@@ -1,11 +1,14 @@
 
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { HeroWrapper } from '../../../hero/views/Hero';
-import TweetBatchButton from './TweetBatchButton';
-import TweetView from './TweetView';
 import './style.scss';
+import config from 'config';
+import DownloadCsv from './DownloadCsv';
 import moment from 'moment';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import TweetBatchButton from './TweetBatchButton';
+import TweetListAuthenticated from './TweetListAuthenticated';
+import TweetListUnauthenticated from './TweetListUnauthenticated';
+import { HeroWrapper } from '../../../hero/views/Hero';
 
 export default class SheetsView extends Component {
 
@@ -71,47 +74,43 @@ export default class SheetsView extends Component {
         : this.props.userSheet.sheet.handles.map(handle => {
             return { completed: false, handle }
           });
-      const tweetViews = completions.map((completion, index) =>
-        <TweetView
-          key={index}
-          index={index}
-          completion={completion}
-          authorized={this.props.authorized}
-          tweet={this.props.userSheet.sheet.tweet} />
-      );
       return (
         <div className='tweet-sheet'>
-
-          {/* Description */}
-          <p className='subtitle'>
-            {this.props.description}
-          </p>
-
-          {/* Tweet Batch */}
-          {
-            this.props.authorized &&
-            <TweetBatchButton
-              nextBatchMessage={this.state.nextTweetsheetBatchMessage}
-              onClick={this.handleTweetAll} />
-          }
-
-          {/* Download CSV */}
-          <div className='download-csv is-clearfix'>
-            <a
-                className='button is-pulled-right'
-                href={`${this.props.url}?id=${this.props.sheetId}`}>
-              Download Sheet
-            </a>
+          {this.descriptionView()}
+          <div className='tweet-sheet-actions'>
+            {this.tweetBatchView()}
+            {this.downloadCsvView()}
           </div>
-
-          {/* Tweets */}
-          <div className='tweets'>
-            {tweetViews}
-          </div>
-
+          {this.tweetListView()}
         </div>
       );
     }
+  }
+
+  downloadCsvView() {
+    return <DownloadCsv {...this.props} />;
+  }
+
+  descriptionView() {
+    return (
+      <p className='subtitle'>
+        {this.props.description}
+      </p>
+    );
+  }
+
+  tweetBatchView() {
+    return (this.props.authorized)
+      ? <TweetBatchButton
+          nextBatchMessage={this.state.nextTweetsheetBatchMessage}
+          onClick={this.handleTweetAll} />
+      : undefined;
+  }
+
+  tweetListView() {
+    return (this.props.authorized)
+      ? <TweetListAuthenticated {...this.props} />
+      : <TweetListUnauthenticated {...this.props} />;
   }
 
   handleTweetAll() {
@@ -133,5 +132,7 @@ SheetsView.propTypes = {
 };
 
 SheetsView.defaultProps = {
-  loading: false
+  loading: false,
+  title: 'tweetsheets',
+  url: `${config.api}/sheets/csv`
 };

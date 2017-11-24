@@ -1,20 +1,27 @@
 
 .tweet-sheet {
 
+  .tweet-sheet-actions {
+    a, button {
+      margin-left: 5px;
+    }
+  }
+
   .tweet-index {
     font-size: 400%;
     margin-bottom: 0px;
     color: #ccc;
   }
 
+  td {
+    line-height: 2em;
+  }
+
   .tweet-completion {
-    font-size: 400%;
-    margin-bottom: 0px;
-
+    text-align: center;
     i {
-      margin-top: 21px;
+      font-size: 2em;
     }
-
     .tweet-complete {
       color: #00d1b2;
     }

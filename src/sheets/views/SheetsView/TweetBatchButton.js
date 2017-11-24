@@ -8,16 +8,16 @@ export default class TweetBatchButton extends Component {
     if (!this.props.nextBatchMessage) return (
       <div className='tweet-batch'>
         <button
-            className='button is-pulled-right'
+            className='button is-primary is-pulled-left'
             onClick={this.props.onClick}>
-          Tweet Batch
+          Tweet Everything
         </button>
       </div>
     )
     else return (
       <div className='tweet-batch'>
         <button
-            className='button is-pulled-right'
+            className='button is-primary is-pulled-left'
             onClick={this.props.onClick}>
           Tweet again {this.props.nextBatchMessage}
         </button>
