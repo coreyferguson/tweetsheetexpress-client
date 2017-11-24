@@ -1,6 +1,7 @@
 
 import PropTypes from 'prop-types';
 import React from 'react';
+import './style.scss';
 
 export default class Nav extends React.Component {
 
@@ -12,11 +13,12 @@ export default class Nav extends React.Component {
     const session = (this.props.data.authorized)
       ? <p> Logged In </p>
       : <a className='button' href={this.props.data.authorizationUrl}>Login</a>;
+    const loading = <a className='button is-loading' disabled>Loading ...</a>;
     return (
       <nav className='navbar'>
         <div className='navbar-brand'>
           <div className='navbar-item'>
-            {this.props.loading ? <h1>Loading...</h1> : session}
+            {this.props.loading ? loading : session}
           </div>
         </div>
       </nav>
