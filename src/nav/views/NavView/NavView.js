@@ -10,16 +10,32 @@ export default class Nav extends React.Component {
   }
 
   render() {
-    const session = (this.props.data.authorized)
-      ? <p> Logged In </p>
-      : <a className='button' href={this.props.data.authorizationUrl}>Login</a>;
-    const loading = <a className='button is-loading' disabled>Loading ...</a>;
+    const loading = this.props.loading;
+    const authorized = this.props.data.authorized;
+    const user = this.props.data.user;
+
+    let navContent;
+    if (loading) {
+      navContent = <a className='button is-loading' disabled>Loading ...</a>
+    } else if (authorized) {
+      navContent = (
+        <p>
+          Welcome {this.props.data.user.screenName} &nbsp;
+          <a className='button'>Sign Out</a>
+        </p>
+      );
+    } else if (!authorized) {
+      navContent = (
+        <a className='button' href={this.props.data.authorizationUrl}>Login</a>
+      );
+    }
     return (
       <nav className='navbar'>
         <div className='navbar-brand'>
-          <div className='navbar-item'>
-            {this.props.loading ? loading : session}
+          <div className='navbar-item is-pulled-right'>
+            {navContent}
           </div>
+          <div className='is-clearfix'></div>
         </div>
       </nav>
     );
