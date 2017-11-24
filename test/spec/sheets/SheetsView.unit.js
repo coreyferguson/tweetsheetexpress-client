@@ -1,4 +1,0 @@
-
-describe('SheetsView unit tests', () => {
-
-});

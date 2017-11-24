@@ -1,8 +1,9 @@
 
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import TweetItemAuthenticated from './TweetItemAuthenticated';
 
-export default class TweetListUnauthenticated extends Component {
+export default class TweetListAuthenticated extends Component {
   render() {
     const template = this.props.userSheet.sheet.tweet;
     const completions = this.props.userSheet.completions;
@@ -30,3 +31,11 @@ export default class TweetListUnauthenticated extends Component {
   }
 }
 
+TweetListAuthenticated.propTypes = {
+  userSheet: PropTypes.shape({
+    sheet: PropTypes.shape({
+      tweet: PropTypes.string.isRequired,
+      completions: PropTypes.array.isRequired
+    }).isRequired
+  }).isRequired
+};

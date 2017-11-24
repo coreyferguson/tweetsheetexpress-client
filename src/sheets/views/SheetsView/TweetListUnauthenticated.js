@@ -1,4 +1,5 @@
 
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import TweetItemUnauthenticated from './TweetItemUnauthenticated';
 
@@ -24,3 +25,11 @@ export default class TweetListUnauthenticated extends Component {
   }
 }
 
+TweetListUnauthenticated.propTypes = {
+  userSheet: PropTypes.shape({
+    sheet: PropTypes.shape({
+      tweet: PropTypes.string.isRequired,
+      handles: PropTypes.arrayOf(PropTypes.string).isRequired
+    }).isRequired
+  }).isRequired
+};

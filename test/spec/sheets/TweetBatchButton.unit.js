@@ -4,7 +4,7 @@ import TweetBatchButton from '../../../src/sheets/views/SheetsView/TweetBatchBut
 import { expect, sinon } from '../../support/TestUtils';
 import { shallow } from 'enzyme';
 
-describe('TweetBatchButton unit tests', () => {
+xdescribe('TweetBatchButton unit tests', () => {
 
   it('next batch can be started now', () => {
     const spy = sinon.spy();
