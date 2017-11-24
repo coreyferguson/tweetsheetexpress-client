@@ -59,7 +59,7 @@ export default class SheetsView extends Component {
   loadingView() {
     if (!this.props.loading) return undefined;
     else {
-      return <h1>Loading</h1>;
+      return <a className='button is-loading'>Loading</a>;
     }
   }
 
