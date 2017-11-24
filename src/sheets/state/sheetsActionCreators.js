@@ -47,20 +47,43 @@ export function view(sheetId) {
   };
 }
 
-export function tweetAllRequest() {
+export function tick(waitTime) {
+  return new Promise(resolve => setTimeout(resolve, time));
+}
+
+export function tweetBatchStart() {
   return {
-    type: actions.TWEET_ALL_REQUEST
+    type: actions.TWEET_BATCH_START
   };
 }
 
-export function tweetAllResponse(userSheet) {
+export function tweetBatchStop() {
   return {
-    type: actions.TWEET_ALL_RESPONSE,
+    type: actions.TWEET_BATCH_STOP
+  };
+}
+
+export function tweetBatch(working) {
+  return dispatch => {
+    if (working) dispatch(tweetBatchStart());
+    else dispatch(tweetBatchStop());
+  };
+}
+
+export function tweetRequest() {
+  return {
+    type: actions.TWEET_REQUEST
+  };
+}
+
+export function tweetResponse(userSheet) {
+  return {
+    type: actions.TWEET_RESPONSE,
     userSheet
   };
 }
 
-export function tweetAll(sheetId) {
+export function tweet(sheetId) {
   return dispatch => {
     dispatch(tweetAllRequest());
     return service.tweetAll(sheetId).then(res => {

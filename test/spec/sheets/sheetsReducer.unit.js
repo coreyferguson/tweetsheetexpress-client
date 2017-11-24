@@ -37,4 +37,44 @@ describe('sheets/state/sheetsReducer unit tests', () => {
     expect(stateAfterCreateResponse).to.have.property('loading', false);
   });
 
+  it('view request + response', () => {
+    // request
+    const stateAfterViewRequest =
+      reducer(initialState, { type: actions.VIEW_REQUEST });
+    expect(stateAfterViewRequest.loading).to.be.true;
+    // response
+    const stateAfterViewResponse =
+      reducer(stateAfterViewRequest, {
+        type: actions.VIEW_RESPONSE,
+        userSheet: { sheetId: '1234', label: 'value' }
+      });
+    expect(stateAfterViewResponse.loading).to.be.false;
+    expect(stateAfterViewResponse.selectedSheetId).to.equal('1234');
+    expect(stateAfterViewResponse.entities).to.eql({
+      '1234': { sheetId: '1234', label: 'value' }
+    });
+  });
+
+  it('tweet response', () => {
+    const stateAfterTweetResponse =
+      reducer(stateAfterTweetResponse, {
+        type: actions.TWEET_RESPONSE,
+        userSheet: { sheetId: '1234', label: 'value' }
+      });
+    expect(stateAfterTweetResponse.loading).to.be.false;
+    expect(stateAfterTweetResponse.selectedSheetId).to.equal('1234');
+    expect(stateAfterTweetResponse.entities).to.eql({
+      '1234': { sheetId: '1234', label: 'value' }
+    });
+  });
+
+  it('tweet batch, start and stop', () => {
+    const stateAfterStart =
+      reducer(initialState, { type: actions.TWEET_BATCH_START });
+    expect(stateAfterStart.batch.working).to.be.true;
+    const stateAfterStop =
+      reducer(stateAfterStart, { type: actions.TWEET_BATCH_STOP });
+    expect(stateAfterStop.batch.working).to.be.false;
+  });
+
 });
