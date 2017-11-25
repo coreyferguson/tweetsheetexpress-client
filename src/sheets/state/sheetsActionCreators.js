@@ -51,9 +51,10 @@ export function tick(waitTime) {
   return new Promise(resolve => setTimeout(resolve, time));
 }
 
-export function tweetBatchStart() {
+export function tweetBatchStart(time) {
   return {
-    type: actions.TWEET_BATCH_START
+    type: actions.TWEET_BATCH_START,
+    time
   };
 }
 
@@ -85,9 +86,9 @@ export function tweetResponse(userSheet) {
 
 export function tweet(sheetId) {
   return dispatch => {
-    dispatch(tweetAllRequest());
-    return service.tweetAll(sheetId).then(res => {
-      dispatch(tweetAllResponse(res.data));
+    dispatch(tweetRequest());
+    return service.tweet(sheetId).then(res => {
+      dispatch(tweetResponse(res.data));
     });
   };
 }

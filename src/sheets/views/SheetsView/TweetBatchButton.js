@@ -5,21 +5,15 @@ import PropTypes from 'prop-types';
 export default class TweetBatchButton extends Component {
 
   render() {
-    if (!this.props.nextBatchMessage) return (
+    return (
       <div className='tweet-batch'>
         <button
-            className='button is-primary is-pulled-left'
+            className={
+              'button is-primary is-pulled-left ' +
+              (this.props.batch.working ? 'is-loading' : '')
+            }
             onClick={this.props.onClick}>
           Tweet Everything
-        </button>
-      </div>
-    )
-    else return (
-      <div className='tweet-batch'>
-        <button
-            className='button is-primary is-pulled-left'
-            onClick={this.props.onClick}>
-          Tweet again {this.props.nextBatchMessage}
         </button>
       </div>
     );
@@ -28,6 +22,9 @@ export default class TweetBatchButton extends Component {
 }
 
 TweetBatchButton.propTypes = {
+  batch: PropTypes.shape({
+    working: PropTypes.bool.isRequired
+  }).isRequired,
   nextBatchMessage: PropTypes.string,
   onClick: PropTypes.func.isRequired
 };

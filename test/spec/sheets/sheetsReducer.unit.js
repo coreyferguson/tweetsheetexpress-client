@@ -15,10 +15,10 @@ describe('sheets/state/sheetsReducer unit tests', () => {
 
   it('initialize state', () => {
     const stateAfter = reducer(undefined, { type: 'INITIALIZE' });
-    expect(stateAfter).to.eql({
-      loading: false,
-      entities: {}
-    });
+    expect(stateAfter.loading).to.be.false;
+    expect(stateAfter.entities).to.not.be.undefined;
+    expect(stateAfter.batch.working).to.be.false;
+    expect(stateAfter.batch.nextTweetTime).to.be.undefined;
   });
 
   it('unknown action type', () => {

@@ -34,8 +34,8 @@ export default class TweetListAuthenticated extends Component {
 TweetListAuthenticated.propTypes = {
   userSheet: PropTypes.shape({
     sheet: PropTypes.shape({
-      tweet: PropTypes.string.isRequired,
-      completions: PropTypes.array.isRequired
-    }).isRequired
+      tweet: PropTypes.string.isRequired
+    }).isRequired,
+    completions: PropTypes.array.isRequired
   }).isRequired
 };

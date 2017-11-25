@@ -1,9 +1,10 @@
 
 import { connect } from 'react-redux'
-import { view, tweetAll } from '../../state/sheetsActionCreators';
+import { view, tweet, tweetBatchStart, tweetBatchStop } from '../../state/sheetsActionCreators';
 
 const mapStateToProps = state => {
   return {
+    batch: state.sheets.batch,
     loading: state.sheets.loading,
     authorized: state.session.data.authorized,
     userSheet: state.sheets.entities[state.sheets.selectedSheetId]
@@ -15,8 +16,14 @@ const mapDispatchToProps = dispatch => {
     onMount: sheetId => {
       dispatch(view(sheetId));
     },
-    onTweetAll: sheetId => {
-      dispatch(tweetAll(sheetId));
+    onBatchStart: (time) => {
+      dispatch(tweetBatchStart(time));
+    },
+    onBatchStop: () => {
+      dispatch(tweetBatchStop());
+    },
+    onTweet: sheetId => {
+      dispatch(tweet(sheetId));
     }
   };
 }

@@ -31,7 +31,7 @@ export class SheetService {
     });
   }
 
-  tweetAll(sheetId) {
+  tweet(sheetId) {
     return this._axios({
       method: 'POST',
       url: `${this._url}/tweet`,

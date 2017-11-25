@@ -4,7 +4,11 @@ import actions from './sheetsActions';
 export default (
   state = {
     loading: false,
-    entities: {}
+    entities: {},
+    batch: {
+      working: false,
+      startTime: undefined
+    }
   },
   action
 ) => {
@@ -33,13 +37,15 @@ export default (
     case actions.TWEET_BATCH_START:
       return Object.assign({}, state, {
         batch: Object.assign({}, state.batch, {
-          working: true
+          working: true,
+          nextTweetTime: action.time
         })
       });
     case actions.TWEET_BATCH_STOP:
       return Object.assign({}, state, {
         batch: Object.assign({}, state.batch, {
-          working: false
+          working: false,
+          nextTweetTime: undefined
         })
       });
     default:

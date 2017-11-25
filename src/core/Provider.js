@@ -13,7 +13,6 @@ export default class AppProvider extends Component {
 
   constructor(props) {
     super(props);
-    console.info('AppProvider.constructor(props):', JSON.stringify(props));
     this.history = createHistory();
     let middleware = props.middleware || applyMiddleware(
       thunkMiddleware, // enables dispatch() functions
@@ -24,7 +23,6 @@ export default class AppProvider extends Component {
   }
 
   render() {
-    console.info('Provider.render() this.store:', JSON.stringify(this.store))
     return (
       <Provider store={this.store}>
         <ConnectedRouter history={this.history}>
