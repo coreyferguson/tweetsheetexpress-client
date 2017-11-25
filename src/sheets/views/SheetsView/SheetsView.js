@@ -29,6 +29,7 @@ export default class SheetsView extends Component {
   }
 
   tick() {
+    this.setState({ time: new Date() });
     // if batch mode running and ready to tweet next batch
     if (this.props.batch.working) {
       if (this.isComplete()) {
@@ -104,12 +105,12 @@ export default class SheetsView extends Component {
       const timeUntilNextTweet = this.getTimeUntilNextBatch();
       const timeUntilNextTweetMessage = (timeUntilNextTweet.asSeconds() < 60)
         ? `${timeUntilNextTweet.seconds()} seconds`
-        : `${timeUntilNextTweet.minutes()+1} minutes`;
+        : `${Math.ceil(timeUntilNextTweet.asMinutes())} minutes`;
       const totalTimeLeft = this.getTotalTimeLeft();
       const isLastBatch = Math.round(totalTimeLeft.asSeconds()) === Math.round(timeUntilNextTweet.asSeconds());
       const totalTimeLeftMessage = (totalTimeLeft.asSeconds() < 60)
         ? `${totalTimeLeft.seconds()} seconds`
-        : `${totalTimeLeft.minutes()+1} minutes`;
+        : `${Math.ceil(totalTimeLeft.asMinutes())} minutes`;
       return (
         <div className='tweet-sheet-progress'>
           <p>
@@ -183,7 +184,7 @@ SheetsView.propTypes = {
   authorized: PropTypes.bool.isRequired,
   batch: PropTypes.shape({
     working: PropTypes.bool.isRequired,
-    nextTweetTime: PropTypes.object.isRequired
+    nextTweetTime: PropTypes.object
   }).isRequired,
   batchSize: PropTypes.number,
   loading: PropTypes.bool,
