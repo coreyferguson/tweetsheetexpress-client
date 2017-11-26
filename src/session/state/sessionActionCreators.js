@@ -23,3 +23,27 @@ export function getSession() {
     });
   };
 }
+
+export function signOutRequest() {
+  return {
+    type: actions.SIGN_OUT_REQUEST
+  };
+}
+
+export function signOutResponse(session) {
+  return {
+    type: actions.SIGN_OUT_RESPONSE
+  };
+}
+
+export function signOut() {
+  return dispatch => {
+    dispatch(signOutRequest());
+    return service.signOut().then(() => {
+      dispatch(signOutResponse());
+      return service.findMe();
+    }).then(response => {
+      dispatch(getSessionResponse(response.data));
+    });
+  };
+}

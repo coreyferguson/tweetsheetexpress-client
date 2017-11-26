@@ -21,7 +21,7 @@ export default class Nav extends React.Component {
       navContent = (
         <p>
           Welcome {this.props.data.user.screenName} &nbsp;
-          <a className='button'>Sign Out</a>
+          <a className='button' onClick={this.props.onSignOut}>Sign Out</a>
         </p>
       );
     } else if (!authorized) {

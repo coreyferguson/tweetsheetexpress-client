@@ -223,7 +223,7 @@ SheetsView.propTypes = {
         completed: PropTypes.bool.isRequired,
         handle: PropTypes.string.isRequired
       })
-    ).isRequired,
+    ),
     sheet: PropTypes.shape({
       handles: PropTypes.array.isRequired
     }).isRequired

@@ -20,6 +20,14 @@ export default (
         loading: false,
         data: action.session
       });
+    case action.SIGN_OUT_REQUEST:
+      return Object.assign({}, state, {
+        loading: true
+      });
+    case action.SIGN_OUT_RESPONSE:
+      return Object.assign({}, state, {
+        loading: false
+      });
     default:
       return state;
   }
