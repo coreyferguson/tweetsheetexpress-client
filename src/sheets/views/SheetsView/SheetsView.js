@@ -5,7 +5,6 @@ import DownloadCsv from './DownloadCsv';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import TweetBatchButton from './TweetBatchButton';
 import TweetListAuthenticated from './TweetListAuthenticated';
 import TweetListUnauthenticated from './TweetListUnauthenticated';
 import { HeroWrapper } from '../../../hero/views/Hero';
@@ -93,12 +92,27 @@ export default class SheetsView extends Component {
   }
 
   tweetBatchView() {
-    return (this.props.authorized && !this.isComplete())
-      ? <TweetBatchButton batch={this.props.batch} onClick={this.handleTweetAll} />
-      : undefined;
+    const authorized = this.props.authorized;
+    const complete = this.isComplete();
+    const working = this.props.batch.working;
+    if (authorized && !complete && !working) return (
+      <div className='tweet-batch'>
+        <button
+            className='button is-pulled-left is-primary'
+            onClick={this.handleTweetAll}>
+          Tweet Everything
+        </button>
+      </div>
+    );
   }
 
   tweetBatchProgressView() {
+    if (this.isComplete()) return (
+      <div className='tweet-sheet-completed-all notification is-primary'>
+        <h1 className='subtitle'>Success! All tweets sent!</h1>
+      </div>
+    );
+
     if (this.props.batch.working) {
       const max = this.getNumberOfTweets();
       const value = this.getNumberOfCompletedTweets();
@@ -112,13 +126,13 @@ export default class SheetsView extends Component {
         ? `${totalTimeLeft.seconds()} seconds`
         : `${Math.ceil(totalTimeLeft.asMinutes())} minutes`;
       return (
-        <div className='tweet-sheet-progress'>
+        <div className='tweet-sheet-progress subtitle'>
           <p>
             Complete in about {totalTimeLeftMessage}.
             {!isLastBatch && ` Next batch of tweets in about ${timeUntilNextTweetMessage}.`}
           </p>
           <progress
-              className='progress is-primary is-large'
+              className='progress is-large'
               value={value}
               max={max}>
             &nbsp;

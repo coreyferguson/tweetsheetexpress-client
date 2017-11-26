@@ -23,7 +23,7 @@ export default class TweetItemAuthenticated extends Component {
         <td>
           {message}
         </td>
-        <td>
+        <td className='is-hidden-mobile'>
           {/* Tweet button */}
           <a
               title='Tweet this'

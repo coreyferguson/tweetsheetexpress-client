@@ -20,7 +20,7 @@ export default class TweetListAuthenticated extends Component {
           <tr>
             <th className='is-narrow'>Status</th>
             <th>Message</th>
-            <th className='is-narrow'> &nbsp; </th>
+            <th className='is-narrow is-hidden-mobile'> &nbsp; </th>
           </tr>
         </thead>
         <tbody>

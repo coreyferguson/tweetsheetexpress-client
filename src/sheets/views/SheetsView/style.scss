@@ -9,6 +9,9 @@
 
   .tweet-sheet-progress {
     margin-bottom: 1em;
+    p {
+      margin-bottom: 0.5em;
+    }
   }
 
   .tweet-index {
@@ -27,7 +30,7 @@
       font-size: 2em;
     }
     .tweet-complete {
-      color: #00d1b2;
+      color: #888;
     }
     .tweet-incomplete {
       color: #ccc;
