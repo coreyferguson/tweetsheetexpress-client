@@ -4,10 +4,10 @@ import { view, tweet, tweetBatchStart, tweetBatchStop } from '../../state/sheets
 
 const mapStateToProps = state => {
   return {
-    batch: state.sheets.batch,
-    loading: state.sheets.loading,
     authorized: state.session.data.authorized,
     authorizationUrl: state.session.data.authorizationUrl,
+    batch: state.sheets.batch,
+    loading: state.sheets.loading,
     userSheet: state.sheets.entities[state.sheets.selectedSheetId]
   };
 };

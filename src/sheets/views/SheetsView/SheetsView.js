@@ -40,9 +40,12 @@ export default class SheetsView extends Component {
   }
 
   render() {
+    const title = (this.props && this.props.userSheet && this.props.userSheet.sheet)
+      ? this.props.userSheet.sheet.title
+      : null;
     return (
       <div>
-        <HeroWrapper title={this.props.title} bulmaModifier={(this.isComplete()) ? 'is-success' : 'is-primary'}>
+        <HeroWrapper title={title} bulmaModifier={(this.isComplete()) ? 'is-success' : 'is-primary'}>
           {this.loadingView()}
           {this.mainView()}
         </HeroWrapper>
@@ -85,11 +88,10 @@ export default class SheetsView extends Component {
   }
 
   descriptionView() {
-    return (
-      <p className='subtitle'>
-        {this.props.description}
-      </p>
-    );
+    const description = (this.props && this.props.userSheet && this.props.userSheet.sheet)
+      ? this.props.userSheet.sheet.description
+      : null;
+    return <p className='subtitle'>{description}</p>;
   }
 
   tweetBatchView() {
@@ -207,7 +209,7 @@ export default class SheetsView extends Component {
 
 SheetsView.propTypes = {
   authorized: PropTypes.bool.isRequired,
-  authorizationUrl: PropTypes.string.isRequired,
+  authorizationUrl: PropTypes.string,
   batch: PropTypes.shape({
     working: PropTypes.bool.isRequired,
     nextTweetTime: PropTypes.object
