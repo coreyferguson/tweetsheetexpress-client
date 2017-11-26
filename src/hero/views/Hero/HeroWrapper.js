@@ -8,7 +8,7 @@ export default function HeroWrapper(props) {
   return (
     <div>
       <Nav />
-      <Hero title={props.title} />
+      <Hero title={props.title} bulmaModifier={props.bulmaModifier} />
       <section className='section'>
         <div className='container is-fluid'>
           {props.children}
@@ -19,5 +19,6 @@ export default function HeroWrapper(props) {
 }
 
 HeroWrapper.propTypes = {
+  bulmaModifier: PropTypes.string,
   title: PropTypes.string
 };

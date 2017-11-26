@@ -42,7 +42,7 @@ export default class SheetsView extends Component {
   render() {
     return (
       <div>
-        <HeroWrapper title={this.props.title}>
+        <HeroWrapper title={this.props.title} bulmaModifier={(this.isComplete()) ? 'is-success' : 'is-primary'}>
           {this.loadingView()}
           {this.mainView()}
         </HeroWrapper>
@@ -108,7 +108,7 @@ export default class SheetsView extends Component {
 
   tweetBatchProgressView() {
     if (this.isComplete()) return (
-      <div className='tweet-sheet-completed-all notification is-primary'>
+      <div className='tweet-sheet-completed-all notification is-success'>
         <h1 className='subtitle'>Success! All tweets sent!</h1>
       </div>
     );
@@ -116,23 +116,20 @@ export default class SheetsView extends Component {
     if (this.props.batch.working) {
       const max = this.getNumberOfTweets();
       const value = this.getNumberOfCompletedTweets();
-      const timeUntilNextTweet = this.getTimeUntilNextBatch();
-      const timeUntilNextTweetMessage = (timeUntilNextTweet.asSeconds() < 60)
-        ? `${timeUntilNextTweet.seconds()} seconds`
-        : `${Math.ceil(timeUntilNextTweet.asMinutes())} minutes`;
       const totalTimeLeft = this.getTotalTimeLeft();
-      const isLastBatch = Math.round(totalTimeLeft.asSeconds()) === Math.round(timeUntilNextTweet.asSeconds());
       const totalTimeLeftMessage = (totalTimeLeft.asSeconds() < 60)
         ? `${totalTimeLeft.seconds()} seconds`
         : `${Math.ceil(totalTimeLeft.asMinutes())} minutes`;
       return (
-        <div className='tweet-sheet-progress subtitle'>
+        <div className='tweet-sheet-progress notification'>
+          <p className='subtitle'>
+            Tweets being sent. Please keep your browser open until complete.
+          </p>
           <p>
-            Complete in about {totalTimeLeftMessage}.
-            {!isLastBatch && ` Next batch of tweets in about ${timeUntilNextTweetMessage}.`}
+            This process will complete in about {totalTimeLeftMessage}.
           </p>
           <progress
-              className='progress is-large'
+              className='progress is-large is-primary'
               value={value}
               max={max}>
             &nbsp;
@@ -187,6 +184,11 @@ export default class SheetsView extends Component {
   }
 
   isComplete() {
+    if (this.props == null ||
+        this.props.userSheet == null ||
+        this.props.userSheet.completions == null) {
+      return false;
+    }
     return this.props.userSheet.completions
       .filter(completion => !completion.completed)
       .length === 0;
@@ -229,9 +231,9 @@ SheetsView.propTypes = {
 };
 
 SheetsView.defaultProps = {
-  batchSize: 5,
+  batchSize: 1,
   loading: false,
-  throttle: time => time.add(5, 'minutes').add(10, 'seconds'),
+  throttle: time => time.add(1, 'minute').add(10, 'seconds'),
   tickRateInMilliseconds: 1000,
   title: 'tweetsheets',
   url: `${config.api}/sheets/csv`

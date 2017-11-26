@@ -5,7 +5,7 @@ import React from 'react';
 export default function Hero(props) {
   const title = (props.title === '') ? 'tweetsheets' : props.title;
   return (
-    <section className='hero is-primary'>
+    <section className={`hero ${props.bulmaModifier}`}>
       <div className='hero-body'>
         <div className='container is-fluid'>
           <h1 className='title'>{title}</h1>
@@ -16,9 +16,11 @@ export default function Hero(props) {
 }
 
 Hero.propTypes = {
+  bulmaModifier: PropTypes.string,
   title: PropTypes.string
 };
 
 Hero.defaultProps = {
+  bulmaModifier: 'is-primary',
   title: 'tweetsheets'
 };

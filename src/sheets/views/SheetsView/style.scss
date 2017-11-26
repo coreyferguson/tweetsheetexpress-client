@@ -8,9 +8,12 @@
   }
 
   .tweet-sheet-progress {
-    margin-bottom: 1em;
-    p {
+    margin-bottom: 1.5em;
+    p.subtitle {
       margin-bottom: 0.5em;
+    }
+    progress {
+      margin-top: 1em;
     }
   }
 
