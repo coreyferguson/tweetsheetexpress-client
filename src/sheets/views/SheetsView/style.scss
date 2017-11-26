@@ -17,12 +17,6 @@
     }
   }
 
-  .tweet-index {
-    font-size: 400%;
-    margin-bottom: 0px;
-    color: #ccc;
-  }
-
   td {
     line-height: 2em;
   }
@@ -40,11 +34,9 @@
     }
   }
 
-  a.tweet-link:visited {
-    background-color: #23d160;
+  a.tweet-link:visited span.icon i {
+    color: #ddd;
   }
-
-
 
   .download-csv {
     margin-bottom: 1.5em;

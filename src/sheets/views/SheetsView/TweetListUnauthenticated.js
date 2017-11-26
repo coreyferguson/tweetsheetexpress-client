@@ -16,11 +16,18 @@ export default class TweetListUnauthenticated extends Component {
       />
     );
     return (
-      <div className='tweet-sheet'>
-        <div className='tweets'>
+      <table className='tweet-sheet table is-striped'>
+        <thead>
+          <tr>
+            <th className='is-narrow'>Index</th>
+            <th className='is-narrow'>Tweet</th>
+            <th>Message</th>
+          </tr>
+        </thead>
+        <tbody>
           {tweets}
-        </div>
-      </div>
+        </tbody>
+      </table>
     );
   }
 }
