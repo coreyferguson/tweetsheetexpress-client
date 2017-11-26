@@ -72,6 +72,7 @@ export default class SheetsView extends Component {
             {this.tweetBatchView()}
             {this.downloadCsvView()}
           </div>
+          {this.reminderToLoginView()}
           {this.tweetBatchProgressView()}
           {this.tweetListView()}
         </div>
@@ -194,10 +195,19 @@ export default class SheetsView extends Component {
       .length === 0;
   }
 
+  reminderToLoginView() {
+    if (!this.props.authorized) return (
+      <div className='notification subtitle'>
+        <a href={this.props.authorizationUrl}>Login</a> to tweet everything in one click!
+      </div>
+    );
+  }
+
 }
 
 SheetsView.propTypes = {
   authorized: PropTypes.bool.isRequired,
+  authorizationUrl: PropTypes.string.isRequired,
   batch: PropTypes.shape({
     working: PropTypes.bool.isRequired,
     nextTweetTime: PropTypes.object

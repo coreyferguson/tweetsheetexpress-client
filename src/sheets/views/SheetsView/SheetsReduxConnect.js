@@ -7,6 +7,7 @@ const mapStateToProps = state => {
     batch: state.sheets.batch,
     loading: state.sheets.loading,
     authorized: state.session.data.authorized,
+    authorizationUrl: state.session.data.authorizationUrl,
     userSheet: state.sheets.entities[state.sheets.selectedSheetId]
   };
 };
